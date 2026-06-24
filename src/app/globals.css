@@ -1,17 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  --background: #020204; /* Updated to match ChadWallet's premium dark aesthetic defaults */
-  --foreground: #ededed;
+  --background: #05080e;
+  --foreground: #f8fafc;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans), Arial, Helvetica, sans-serif;
-  --font-mono: var(--font-geist-mono), monospace;
 
-  /* 🚀 TAILWIND v4 WAY: Define Keyframes & Animations inside the @theme engine! */
+  /* ChadWallet Custom Brand Color Extension System */
+  --color-chad-bg: #05080e;
+  --color-chad-surface: #121824;
+  --color-chad-green: #10d876;
+  --color-chad-red: #f04438;
+  --color-chad-border: #1e293b;
+
+  /* Core UI animations */
   --animate-marquee: marquee 35s linear infinite;
   --animate-marquee-reverse: marquee-reverse 35s linear infinite;
   --animate-fade-in: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -59,4 +64,29 @@
 body {
   background: var(--background);
   color: var(--foreground);
+
+  font-family:
+    var(--font-sans),
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  letter-spacing: -0.02em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #05080e;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #121824;
 }

@@ -7,48 +7,49 @@ interface ChartPanelProps {
 
 export default function ChartPanel({ token, address }: ChartPanelProps) {
   return (
-    <section className="flex-1 flex flex-col bg-[#020204] overflow-y-auto">
-      <div className="p-4 border-b border-zinc-800/60 bg-[#050507] flex items-center justify-between shrink-0">
+    <section className="flex-1 flex flex-col bg-chad-bg overflow-y-auto">
+      <div className="p-4 border-b border-chad-border bg-chad-surface/30 flex items-center justify-between shrink-0">
         <div className="flex items-center gap-4">
-          <h1 className="text-lg font-extrabold tracking-tight text-zinc-100">
-            {token.name}{" "}
-            <span className="text-xs text-zinc-500 font-mono">
-              {token.symbol}
+          <h1 className="text-xl font-black tracking-tight text-slate-100">
+            {token.name}
+            <span className="text-xs text-slate-500 font-mono font-normal">
+              solana / {address.slice(0, 6)}...
             </span>
           </h1>
-          <div className="flex gap-4 font-mono text-[10px] text-zinc-400 border-l border-zinc-800 pl-4">
+          <div className="flex gap-4 font-mono text-[10px] text-slate-400 border-l border-chad-border pl-4">
             <div>
-              24H VOL:{" "}
-              <span className="text-zinc-200 font-bold">{token.volume24h}</span>
+              24H VOL:
+              <span className="text-slate-200 font-bold">
+                {token.volume24h}
+              </span>
             </div>
             <div>
-              MKT CAP:{" "}
-              <span className="text-zinc-200 font-bold">{token.marketCap}</span>
+              MKT CAP:
+              <span className="text-slate-200 font-bold">
+                {token.marketCap}
+              </span>
             </div>
           </div>
         </div>
         <div
-          className={`font-mono text-sm font-bold ${token.isPositive ? "text-emerald-400" : "text-rose-500"}`}
+          className={`font-mono text-base font-black ${token.isPositive ? "text-chad-green" : "text-chad-red"}`}
         >
-          {token.price} ({token.change})
+          {token.price}
         </div>
       </div>
 
-      <div className="p-4 h-64 shrink-0">
-        <div className="w-full h-full border border-dashed border-zinc-800 bg-[#050507]/60 rounded-xl flex flex-col items-center justify-center p-4 text-center font-mono relative overflow-hidden">
-          <div className="text-xs text-zinc-400 font-bold">
-            Dynamic WebSocket Chart Hook Active
+      <div className="p-4 h-72 shrink-0">
+        <div className="w-full h-full border border-chad-border bg-chad-surface/40 rounded-2xl flex flex-col items-center justify-center p-4 text-center font-mono relative overflow-hidden">
+          <div className="text-xs text-slate-400 font-bold tracking-tight">
+            Dynamic Live Candle Stream
           </div>
-          <div className="text-[10px] text-zinc-500 mt-1 max-w-xs truncate">
-            ADDR: {address}
-          </div>
-          <div className="absolute bottom-4 left-4 right-4 h-12 flex items-end gap-1 opacity-20">
-            {Array.from({ length: 42 }).map((_, i) => (
+          <div className="absolute bottom-4 left-4 right-4 h-24 flex items-end gap-1 opacity-20">
+            {Array.from({ length: 50 }).map((_, i) => (
               <div
                 key={i}
-                className="flex-1 bg-emerald-500 rounded-t"
+                className="flex-1 bg-chad-green rounded-t"
                 style={{
-                  height: `${(Math.sin(i * 0.5) * 40 + 50).toFixed(2)}%`,
+                  height: `${(Math.sin(i * 0.4) * 35 + 55).toFixed(2)}%`,
                 }}
               />
             ))}
@@ -56,36 +57,34 @@ export default function ChartPanel({ token, address }: ChartPanelProps) {
         </div>
       </div>
 
-      <div className="flex-1 grid grid-cols-2 border-t border-zinc-800/60 divide-x divide-zinc-800/60 font-mono text-xs">
-        <div className="flex flex-col h-full">
-          <div className="p-2.5 bg-[#050507] border-b border-zinc-800/60 text-[10px] text-zinc-500 font-bold uppercase tracking-wider">
+      <div className="flex-1 grid grid-cols-2 border-t border-chad-border divide-x divide-chad-border font-mono text-xs">
+        <div className="flex flex-col h-full bg-chad-surface/10">
+          <div className="p-2.5 bg-chad-surface/60 border-b border-chad-border text-[10px] text-slate-400 font-bold uppercase tracking-wider">
             Top Supply Holders
           </div>
-          <div className="flex-1 p-2 space-y-1.5 overflow-y-auto">
-            <div className="flex justify-between p-1 bg-zinc-950 rounded border border-zinc-900/60 text-[11px]">
-              <span className="text-indigo-400 font-bold">
-                Raydium Authority Pool
-              </span>
-              <span>4.12%</span>
+          <div className="flex-1 p-3 space-y-1.5 overflow-y-auto text-slate-300">
+            <div className="flex justify-between p-1.5 bg-chad-surface/40 rounded border border-chad-border/60 text-[11px]">
+              <span className="text-indigo-400 font-bold">Raydium LP Pool</span>
+              <span>5.20%</span>
             </div>
-            <div className="flex justify-between p-1 bg-zinc-950 rounded border border-zinc-900/60 text-[11px]">
-              <span className="text-zinc-400">0x9fA2...3a81</span>
-              <span>1.85%</span>
+            <div className="flex justify-between p-1.5 bg-chad-surface/40 rounded border border-chad-border/60 text-[11px]">
+              <span>0xChAd...8a21</span>
+              <span>2.41%</span>
             </div>
           </div>
         </div>
-        <div className="flex flex-col h-full">
-          <div className="p-2.5 bg-[#050507] border-b border-zinc-800/60 text-[10px] text-zinc-500 font-bold uppercase tracking-wider">
+        <div className="flex flex-col h-full bg-chad-surface/10">
+          <div className="p-2.5 bg-chad-surface/60 border-b border-chad-border text-[10px] text-slate-400 font-bold uppercase tracking-wider">
             Order Book Stream
           </div>
-          <div className="flex-1 p-2 space-y-1.5 overflow-y-auto">
-            <div className="flex justify-between p-1 bg-zinc-950 rounded border border-zinc-900/60 text-[11px]">
-              <span className="text-emerald-400 font-bold">BUY 14.5 SOL</span>
-              <span className="text-zinc-500">1s ago</span>
+          <div className="flex-1 p-3 space-y-1.5 overflow-y-auto text-slate-300">
+            <div className="flex justify-between p-1.5 bg-chad-surface/40 rounded border border-chad-border/60 text-[11px]">
+              <span className="text-chad-green font-bold">BUY 22.4 SOL</span>
+              <span className="text-slate-500">Just now</span>
             </div>
-            <div className="flex justify-between p-1 bg-zinc-950 rounded border border-zinc-900/60 text-[11px]">
-              <span className="text-rose-400 font-bold">SELL 4.2 SOL</span>
-              <span className="text-zinc-500">4s ago</span>
+            <div className="flex justify-between p-1.5 bg-chad-surface/40 rounded border border-chad-border/60 text-[11px]">
+              <span className="text-chad-red font-bold">SELL 8.1 SOL</span>
+              <span className="text-slate-500">3s ago</span>
             </div>
           </div>
         </div>

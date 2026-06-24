@@ -13,36 +13,30 @@ export default function TokenBanner({
   direction = "forward",
   position = "top",
 }: TokenBannerProps) {
-  // Determine correct animation class based on direction prop
   const animationClass =
     direction === "reverse" ? "animate-marquee-reverse" : "animate-marquee";
-
-  // Dynamic positioning borders matching the fomo layout style
   const borderClass =
     position === "bottom"
-      ? "border-t border-zinc-900/60 mt-auto"
-      : "border-b border-zinc-900/60";
+      ? "border-t border-chad-border mt-auto"
+      : "border-b border-chad-border";
 
   return (
     <div
-      className={`w-full bg-zinc-950/80 py-3 overflow-hidden whitespace-nowrap flex gap-8 font-mono text-xs z-20 select-none ${borderClass}`}
+      className={`w-full bg-chad-bg/90 backdrop-blur-sm py-3 overflow-hidden whitespace-nowrap flex gap-8 font-mono text-xs z-20 select-none ${borderClass}`}
     >
       <div className={`${animationClass} flex items-center gap-12 shrink-0`}>
-        {/* Tripled array list loop guarantees a seamless, unbroken marquee crawl on ultra-wide screens */}
         {[...tokens, ...tokens, ...tokens].map((token, idx) => (
           <div
             key={`${token.symbol}-${idx}`}
             onClick={() => onTokenClick(token)}
-            className="inline-flex items-center gap-2 cursor-pointer hover:text-emerald-400 transition-colors group"
+            className="inline-flex items-center gap-2 cursor-pointer hover:bg-chad-surface/40 px-2 py-1 rounded-md transition-all group"
           >
-            <span className="font-bold text-zinc-300 group-hover:text-white">
+            <span className="font-extrabold text-slate-300 group-hover:text-white transition-colors">
               {token.symbol}
             </span>
-            <span className="text-zinc-500">{token.price}</span>
+            <span className="text-slate-500 font-medium">{token.price}</span>
             <span
-              className={
-                token.isPositive ? "text-emerald-500" : "text-rose-500"
-              }
+              className={`font-bold ${token.isPositive ? "text-chad-green" : "text-chad-red"}`}
             >
               {token.change}
             </span>

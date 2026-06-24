@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import TokenBanner from "@/components/TokenBanner";
-import AuthModal from "@/components/AuthModal"; // 👈 Import the newly created modal
+import AuthModal from "@/components/AuthModal";
 import { TOKEN_REGISTRY } from "@/data/mockTokens";
 
 export default function Home() {
@@ -19,8 +19,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#020204] text-zinc-100 flex flex-col relative overflow-x-hidden select-none">
-      {/* FIXED CONTAINER HOOKING UP EVENT ACTIONS */}
+    <div className="min-h-screen bg-chad-bg text-slate-50 flex flex-col relative overflow-x-hidden select-none antialiased">
       <div className="fixed top-0 left-0 right-0 z-50 flex flex-col">
         <TokenBanner
           tokens={TOKEN_REGISTRY}
@@ -31,7 +30,6 @@ export default function Home() {
         <Navbar onLogin={() => setIsAuthOpen(true)} />
       </div>
 
-      {/* CORE HERO WRAPPER ACTION */}
       <div className="pt-36 flex-1 flex flex-col">
         <Hero onStartTrading={() => setIsAuthOpen(true)} />
       </div>
@@ -43,7 +41,6 @@ export default function Home() {
         position="bottom"
       />
 
-      {/* 🔥 THE AUTH MODAL CONTAINER INSTANCE */}
       <AuthModal
         isOpen={isAuthOpen}
         onClose={() => setIsAuthOpen(false)}

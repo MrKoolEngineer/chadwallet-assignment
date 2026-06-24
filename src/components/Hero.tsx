@@ -6,49 +6,25 @@ interface HeroProps {
 
 export default function Hero({ onStartTrading }: HeroProps) {
   return (
-    <section className="relative w-full min-h-screen bg-[#020204] flex flex-col items-center justify-start overflow-hidden select-none px-6 pt-32 pb-20">
-      {/* Cinematic Earth/Space Background Image Layer */}
-      <div className="absolute inset-0 bg-cover bg-center md:bg-right-top opacity-80 pointer-events-none mix-blend-screen z-0 scale-105 select-none" />
+    <section className="flex-1 flex flex-col items-center justify-center text-center px-6 max-w-4xl mx-auto relative select-none">
+      <div className="absolute top-12 w-72 h-72 bg-chad-green/10 rounded-full blur-[120px] pointer-events-none" />
 
-      {/* Hero Content Panel */}
-      <div className="relative z-10 text-center max-w-4xl mx-auto flex flex-col items-center space-y-6 pt-10">
-        {/* Core Headline Brand Identity */}
-        <h1 className="text-6xl sm:text-7xl md:text-8xl font-black tracking-tight leading-[0.9] text-zinc-100 flex flex-col items-center">
-          <span className="text-emerald-500 tracking-tighter drop-shadow-[0_0_30px_rgba(16,185,129,0.2)]">
-            CHAD
-          </span>
-          <span className="text-white tracking-normal mt-1">WALLET</span>
-        </h1>
+      <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-none mb-6 text-white">
+        Buy & sell <br />
+        <span className="text-chad-green">trending tokens</span> instantly
+      </h1>
 
-        {/* Tagline */}
-        <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-300 max-w-xl font-sans mt-2">
-          where traders become legends.
-        </h2>
+      <p className="text-slate-400 font-medium max-w-lg text-sm md:text-base leading-relaxed mb-8">
+        Experience lightning-fast token execution, embedded analytics, and
+        premium asset management on Solana's elite workflow interface.
+      </p>
 
-        {/* Descriptive Pitch Copy */}
-        <p className="text-sm sm:text-base text-zinc-400 max-w-md mx-auto leading-relaxed font-medium">
-          From memecoins to viral tokens, trade any asset on Solana in seconds
-          by monitoring alpha wallets.
-        </p>
-
-        {/* Core Conversion CTAs */}
-        <div className="flex items-center gap-4 pt-4">
-          <button
-            onClick={onStartTrading}
-            className="bg-emerald-500 hover:bg-emerald-600 text-zinc-950 font-black tracking-tight text-sm px-8 py-3.5 rounded-xl transition-all hover:shadow-[0_0_40px_rgba(16,185,129,0.25)] active:scale-97 cursor-pointer"
-          >
-            Start trading
-          </button>
-          <a
-            href="https://apps.apple.com/us/app/chadwallet/id6757367474"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-zinc-900/80 border border-zinc-800/80 text-zinc-300 font-bold text-sm px-8 py-3.5 rounded-xl hover:bg-zinc-800 hover:text-white transition-all text-center active:scale-97"
-          >
-            Download app
-          </a>
-        </div>
-      </div>
+      <button
+        onClick={onStartTrading}
+        className="bg-chad-green text-chad-bg font-black text-sm md:text-base px-8 py-4 rounded-xl shadow-[0_4px_24px_rgba(16,216,118,0.3)] hover:opacity-90 active:scale-98 transition-all cursor-pointer"
+      >
+        Start Trading Now
+      </button>
     </section>
   );
 }
