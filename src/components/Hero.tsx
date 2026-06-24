@@ -1,10 +1,10 @@
 "use client";
 
-interface HeroProps {
-  onStartTrading: () => void;
-}
+import { useAuthTrigger } from "@/hooks/useAuthTrigger";
 
-export default function Hero({ onStartTrading }: HeroProps) {
+export default function Hero() {
+  const { login } = useAuthTrigger();
+
   return (
     <section className="flex-1 flex flex-col items-center justify-center text-center px-6 max-w-4xl mx-auto relative select-none">
       <div className="absolute top-12 w-72 h-72 bg-chad-green/10 rounded-full blur-[120px] pointer-events-none" />
@@ -20,7 +20,7 @@ export default function Hero({ onStartTrading }: HeroProps) {
       </p>
 
       <button
-        onClick={onStartTrading}
+        onClick={login}
         className="bg-chad-green text-chad-bg font-black text-sm md:text-base px-8 py-4 rounded-xl shadow-[0_4px_24px_rgba(16,216,118,0.3)] hover:opacity-90 active:scale-98 transition-all cursor-pointer"
       >
         Start Trading Now

@@ -2,14 +2,12 @@
 
 interface TokenBannerProps {
   tokens: Token[];
-  onTokenClick: (token: Token) => void;
   direction?: "forward" | "reverse";
   position?: "top" | "bottom";
 }
 
 export default function TokenBanner({
   tokens,
-  onTokenClick,
   direction = "forward",
   position = "top",
 }: TokenBannerProps) {
@@ -28,7 +26,7 @@ export default function TokenBanner({
         {[...tokens, ...tokens, ...tokens].map((token, idx) => (
           <div
             key={`${token.symbol}-${idx}`}
-            onClick={() => onTokenClick(token)}
+            onClick={() => console.log("=> token", token)}
             className="inline-flex items-center gap-2 cursor-pointer hover:bg-chad-surface/40 px-2 py-1 rounded-md transition-all group"
           >
             <span className="font-extrabold text-slate-300 group-hover:text-white transition-colors">
