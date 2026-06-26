@@ -9,6 +9,9 @@ import {
 } from "@/types/birdeye";
 
 import { OHLCVResponse, ChartInterval } from "@/types/chart";
+import { TokenHolderResponse } from "@/types/holder";
+import { TokenTradesResponse } from "@/types/trade";
+
 import { DEFAULT_CHAIN } from "@/constants/chain";
 
 export const getTrendingTokens = async (
@@ -113,3 +116,55 @@ export const getTokenOHLCV = async ({
     throw error;
   }
 };
+
+interface GetTokenHoldersParams {
+  chain: string;
+  address: string;
+}
+
+export async function getTokenHolders({
+  chain,
+  address,
+}: GetTokenHoldersParams): Promise<TokenHolderResponse> {
+  const response = await birdeyeApi.get("/defi/v3/token/holder", {
+    params: {
+      address,
+      offset: 0,
+      limit: 10,
+      ui_amount_mode: "scaled",
+    },
+    headers: {
+      "x-chain": chain,
+    },
+  });
+
+  return response.data.data;
+}
+
+interface GetTokenTradesParams {
+  chain: string;
+  address: string;
+}
+
+export async function getTokenTrades({
+  chain,
+  address,
+}: GetTokenTradesParams): Promise<TokenTradesResponse> {
+  const response = await birdeyeApi.get("/defi/v3/token/txs", {
+    params: {
+      address,
+      offset: 0,
+      limit: 20,
+      sort_by: "block_unix_time",
+      sort_type: "desc",
+      tx_type: "swap",
+      ui_amount_mode: "scaled",
+    },
+
+    headers: {
+      "x-chain": chain,
+    },
+  });
+
+  return response.data.data;
+}
