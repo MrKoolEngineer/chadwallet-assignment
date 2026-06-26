@@ -1,6 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import LoadingState from "../common/LoadingState";
+
 import { useGetTrendingTokens } from "@/hooks/useGetTrendingTokens";
 import { formatPercentage, formatPrice } from "@/utils/token";
 import { DEFAULT_CHAIN } from "@/constants/chain";
@@ -25,17 +27,15 @@ export default function TrendingPanel({
 
   if (isLoading) {
     return (
-      <aside className="w-72 border-r border-chad-border bg-chad-bg">
-        <div className="p-4 text-sm text-slate-400">
-          Loading trending tokens...
-        </div>
+      <aside className="w-72 bg-chad-bg">
+        <LoadingState label="Loading trending tokens..." />
       </aside>
     );
   }
 
   if (isError || !trendingTokens || trendingTokens.length === 0) {
     return (
-      <aside className="w-72 border-r border-chad-border bg-chad-bg">
+      <aside className="w-72 bg-chad-bg">
         <div className="p-4 text-sm text-chad-red">
           Unable to load trending tokens.
         </div>
@@ -44,9 +44,9 @@ export default function TrendingPanel({
   }
 
   return (
-    <aside className="w-72 border-r border-chad-border bg-chad-bg flex flex-col shrink-0">
-      <div className="p-3 border-b border-chad-border bg-chad-surface/50 flex items-center justify-between">
-        <h2 className="text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase">
+    <aside className="card w-72 flex flex-col shrink-0">
+      <div className="p-3   bg-chad-surface/50 flex items-center justify-between">
+        <h2 className="text-sm font-mono font-bold tracking-wider text-slate-400 uppercase">
           🔥 Trending Momentum
         </h2>
 
@@ -55,7 +55,7 @@ export default function TrendingPanel({
         </span>
       </div>
 
-      <div className="flex-1 overflow-y-auto divide-y divide-chad-border">
+      <div className="flex-1 overflow-y-auto no-scrollbar divide-y divide-chad-border">
         {trendingTokens.map((token) => {
           const isActive = activeAddress === token.address;
 

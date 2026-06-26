@@ -13,12 +13,14 @@ interface TokenBannerProps {
   chain?: string;
   direction?: "forward" | "reverse";
   position?: "top" | "bottom";
+  disableNavigation?: boolean;
 }
 
 export default function TokenBanner({
   tokens,
   isLoading = false,
   isError = false,
+  disableNavigation = false,
   chain = DEFAULT_CHAIN,
   direction = "forward",
   position = "top",
@@ -69,6 +71,7 @@ export default function TokenBanner({
           const isPositive = changePercent >= 0;
 
           const handleNavigation = () => {
+            if (disableNavigation) return;
             router.push(`/tokens/${chain}/${token.address}?timeFrame=1D`);
           };
 

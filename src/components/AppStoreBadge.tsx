@@ -2,9 +2,13 @@
 
 interface AppStoreBadgeProps {
   platform: "apple" | "google";
+  fullWidth?: boolean;
 }
 
-export default function AppStoreBadge({ platform }: AppStoreBadgeProps) {
+export default function AppStoreBadge({
+  platform,
+  fullWidth = false,
+}: AppStoreBadgeProps) {
   const config = {
     apple: {
       href: "https://apps.apple.com/us/app/chadwallet/id6757367474",
@@ -33,22 +37,41 @@ export default function AppStoreBadge({ platform }: AppStoreBadgeProps) {
       href={current.href}
       target="_blank"
       rel="noopener noreferrer"
-      className="hidden sm:flex items-center gap-3.5 bg-slate-900/50 hover:bg-slate-900/90 border border-white/10 rounded-xl px-4 py-2 transition-all text-left group"
+      className={`group rounded-xl border border-white/10 bg-slate-900/50 transition-all hover:bg-slate-900/90 ${
+        fullWidth
+          ? "flex w-full justify-start px-6 py-4"
+          : "flex items-center gap-3.5 px-4 py-2"
+      }`}
     >
-      <svg
-        className="w-6 h-6 fill-slate-300 group-hover:fill-white transition-colors shrink-0"
-        viewBox={current.viewBox}
-      >
-        {current.path}
-      </svg>
+      <div className="flex items-center gap-4">
+        <svg
+          className={`shrink-0 fill-slate-300 transition-colors group-hover:fill-white ${
+            fullWidth ? "h-8 w-8" : "h-6 w-6"
+          }`}
+          viewBox={current.viewBox}
+        >
+          {current.path}
+        </svg>
 
-      <div className="flex flex-col font-sans gap-0.5">
-        <span className="text-[10px] uppercase tracking-wider text-slate-400 font-bold leading-none">
-          {current.subText}
-        </span>
-        <span className="text-sm font-extrabold text-slate-100 leading-none group-hover:text-white transition-colors">
-          {current.mainText}
-        </span>
+        <div
+          className={`flex flex-col ${fullWidth ? "items-start" : "gap-0.5"}`}
+        >
+          <span
+            className={`font-bold uppercase tracking-wider text-slate-400  ${
+              fullWidth ? "text-[11px]" : "text-[10px]"
+            }`}
+          >
+            {current.subText}
+          </span>
+
+          <span
+            className={`font-extrabold text-slate-100  transition-colors group-hover:text-white ${
+              fullWidth ? "text-m mt-1" : "text-sm"
+            }`}
+          >
+            {current.mainText}
+          </span>
+        </div>
       </div>
     </a>
   );

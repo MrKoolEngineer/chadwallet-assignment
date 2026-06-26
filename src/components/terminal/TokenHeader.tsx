@@ -1,23 +1,44 @@
 "use client";
 
+import { useGetTokenStats } from "@/hooks/useGetTokenStats";
+
 import {
   formatCompactNumber,
   formatPercentage,
   formatPrice,
 } from "@/utils/token";
-import { TokenStats } from "@/types/token";
 
 interface TokenHeaderProps {
-  token: TokenStats;
   chain: string;
   address: string;
 }
 
-export default function TokenHeader({
-  token,
-  chain,
-  address,
-}: TokenHeaderProps) {
+export default function TokenHeader({ chain, address }: TokenHeaderProps) {
+  const {
+    data: token,
+    isLoading,
+    isError,
+  } = useGetTokenStats({
+    chain,
+    address,
+  });
+
+  if (isLoading) {
+    return (
+      <div className="h-23 border-b border-chad-border bg-chad-surface/30 flex items-center justify-center shrink-0">
+        <span className="text-slate-500 font-mono">Loading token...</span>
+      </div>
+    );
+  }
+
+  if (isError || !token) {
+    return (
+      <div className="h-23 border-b border-chad-border bg-chad-surface/30 flex items-center justify-center shrink-0">
+        <span className="text-chad-red font-mono">Failed to load token.</span>
+      </div>
+    );
+  }
+
   const isPositive = token.price24hChangePercent >= 0;
 
   return (
@@ -48,7 +69,8 @@ export default function TokenHeader({
             <div className="text-[10px] uppercase text-slate-500">
               24H Volume
             </div>
-            <div className="font-bold">
+
+            <div className="font-bold text-slate-100">
               {formatCompactNumber(token.v24hUSD)}
             </div>
           </div>
@@ -57,7 +79,8 @@ export default function TokenHeader({
             <div className="text-[10px] uppercase text-slate-500">
               Market Cap
             </div>
-            <div className="font-bold">
+
+            <div className="font-bold text-slate-100">
               {formatCompactNumber(token.marketCap)}
             </div>
           </div>
@@ -66,7 +89,8 @@ export default function TokenHeader({
             <div className="text-[10px] uppercase text-slate-500">
               Liquidity
             </div>
-            <div className="font-bold">
+
+            <div className="font-bold text-slate-100">
               {formatCompactNumber(token.liquidity)}
             </div>
           </div>

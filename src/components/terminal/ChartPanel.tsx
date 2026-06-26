@@ -8,7 +8,6 @@ import TradingViewChart from "./TradingViewChart";
 import TopHoldersPanel from "./TopHoldersPanel";
 import LiveTradesPanel from "./LiveTradesPanel";
 
-import { useGetTokenStats } from "@/hooks/useGetTokenStats";
 import { ChartInterval } from "@/types/chart";
 
 interface ChartPanelProps {
@@ -19,41 +18,16 @@ interface ChartPanelProps {
 export default function ChartPanel({ chain, address }: ChartPanelProps) {
   const [interval, setInterval] = useState<ChartInterval>("15m");
 
-  const {
-    data: token,
-    isLoading,
-    isError,
-  } = useGetTokenStats({
-    chain,
-    address,
-  });
-
-  if (isLoading) {
-    return (
-      <section className="flex-1 flex items-center justify-center bg-chad-bg">
-        Loading token...
-      </section>
-    );
-  }
-
-  if (isError || !token) {
-    return (
-      <section className="flex-1 flex items-center justify-center bg-chad-bg">
-        Failed to load token.
-      </section>
-    );
-  }
-
   return (
-    <section className="flex-1 flex flex-col bg-chad-bg overflow-hidden">
-      <TokenHeader token={token} chain={chain} address={address} />
+    <section className="flex-1 flex flex-col overflow-hidden">
+      <div className="card mb-2 overflow-hidden">
+        <TokenHeader chain={chain} address={address} />
+        <TimeframeTabs interval={interval} onChange={setInterval} />
+        <TradingViewChart chain={chain} address={address} interval={interval} />
+      </div>
 
-      <TimeframeTabs interval={interval} onChange={setInterval} />
-      <TradingViewChart chain={chain} address={address} interval={interval} />
-
-      <div className="flex-1 grid grid-cols-2 divide-x divide-chad-border">
+      <div className="flex-1 min-h-0 grid grid-cols-2 gap-2">
         <TopHoldersPanel chain={chain} address={address} />
-
         <LiveTradesPanel chain={chain} address={address} />
       </div>
     </section>

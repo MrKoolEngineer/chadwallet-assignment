@@ -10,6 +10,7 @@ import {
   UTCTimestamp,
 } from "lightweight-charts";
 
+import LoadingState from "../common/LoadingState";
 import { useGetTokenOHLCV } from "@/hooks/useGetTokenOHLCV";
 import { ChartInterval } from "@/types/chart";
 
@@ -161,14 +162,7 @@ export default function TradingViewChart({
   }, [chain, address, data]);
 
   if (isLoading) {
-    return (
-      <div
-        style={{ height: CHART_HEIGHT }}
-        className="flex items-center justify-center text-slate-500 font-mono"
-      >
-        Loading chart...
-      </div>
-    );
+    return <LoadingState label="Loading chart..." height={CHART_HEIGHT} />;
   }
 
   if (isError) {

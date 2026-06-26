@@ -15,6 +15,10 @@
   --color-chad-green: #10d876;
   --color-chad-red: #f04438;
   --color-chad-border: #1e293b;
+  --color-chad-card: #0c1118;
+  --shadow-card: 0 0 0 1px rgba(30, 41, 59, 0.6);
+  --soft-shadow-card:
+    0 2px 12px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.02);
 
   /* Core UI animations */
   --animate-marquee: marquee 90s linear infinite;
@@ -89,4 +93,20 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #121824;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+@utility card {
+  background: var(--color-chad-card);
+  border: 1px solid var(--color-chad-border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-card);
 }
