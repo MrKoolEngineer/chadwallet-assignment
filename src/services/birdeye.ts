@@ -7,6 +7,8 @@ import {
   BirdeyeTrendingDataPayload,
   GetTokenStatsOptions,
 } from "@/types/birdeye";
+
+import { OHLCVResponse, ChartInterval } from "@/types/chart";
 import { DEFAULT_CHAIN } from "@/constants/chain";
 
 export const getTrendingTokens = async (
@@ -68,6 +70,46 @@ export const getTokenStats = async ({
     };
   } catch (error) {
     console.error("Error fetching token stats:", error);
+    throw error;
+  }
+};
+
+export interface GetTokenOHLCVParams {
+  chain: string;
+  address: string;
+  type?: ChartInterval;
+  currency?: "usd" | "native";
+  countLimit?: number;
+}
+
+export const getTokenOHLCV = async ({
+  chain,
+  address,
+  type = "15m",
+  currency = "usd",
+  countLimit = 200,
+}: GetTokenOHLCVParams): Promise<OHLCVResponse> => {
+  try {
+    const response = await birdeyeApi.get<{
+      success: boolean;
+      data: OHLCVResponse;
+    }>("/defi/v3/ohlcv", {
+      headers: {
+        "x-chain": chain,
+      },
+      params: {
+        address,
+        type,
+        currency,
+        mode: "count",
+        count_limit: countLimit,
+        time_to: Math.floor(Date.now() / 1000),
+      },
+    });
+
+    return response.data.data;
+  } catch (error) {
+    console.error("Error in getTokenOHLCV:", error);
     throw error;
   }
 };
