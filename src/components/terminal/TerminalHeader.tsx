@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useAuthTrigger } from "@/hooks/useAuthTrigger";
+import Logo from "../Logo";
 
 interface TerminalHeaderProps {
   chain: string;
@@ -13,11 +14,8 @@ export default function TerminalHeader({ chain }: TerminalHeaderProps) {
   return (
     <header className="h-14 border-b border-chad-border bg-chad-bg px-6 flex items-center justify-between shrink-0">
       <div className="flex items-center gap-4">
-        <Link
-          href="/"
-          className="text-md font-black tracking-tighter text-chad-green hover:opacity-80 transition-opacity"
-        >
-          Chad<span className="text-white">Wallet</span>
+        <Link href="/">
+          <Logo />
         </Link>
         <div className="h-4 w-px bg-chad-border" />
         <div className="flex items-center gap-4 text-[10px] font-mono text-slate-400">

@@ -33,7 +33,7 @@ export default function PrivyAuthProvider({
     <PrivyProvider
       appId={PRIVY_APP_ID}
       config={{
-        loginMethods: ["google"],
+        loginMethods: ["google", "apple", "wallet"],
         appearance: {
           theme: "dark",
           accentColor: "#10D876",

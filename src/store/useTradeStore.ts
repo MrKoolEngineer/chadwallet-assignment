@@ -1,30 +1,30 @@
 import { create } from "zustand";
 
-interface SelectedToken {
+export interface SelectedToken {
+  address: string;
   symbol: string;
+  name: string;
   chain: string;
 }
 
 interface TradeState {
-  selectedChain: string;
-  selectedToken: string;
-  selectedTokenData: SelectedToken | null;
-  setSelectedChain: (chain: string) => void;
-  setSelectedToken: (token: string) => void;
-  setSelectedTokenData: (tokenData: SelectedToken) => void;
+  selectedToken: SelectedToken | null;
+
+  setSelectedToken: (token: SelectedToken) => void;
+
+  clearSelectedToken: () => void;
 }
 
 export const useTradeStore = create<TradeState>((set) => ({
-  selectedChain: "solana",
-  selectedToken: "SOL",
-  selectedTokenData: { symbol: "SOL", chain: "solana" },
+  selectedToken: null,
 
-  setSelectedChain: (chain) => set({ selectedChain: chain }),
-  setSelectedToken: (token) => set({ selectedToken: token }),
-  setSelectedTokenData: (tokenData) =>
+  setSelectedToken: (token) =>
     set({
-      selectedTokenData: tokenData,
-      selectedToken: tokenData.symbol,
-      selectedChain: tokenData.chain,
+      selectedToken: token,
+    }),
+
+  clearSelectedToken: () =>
+    set({
+      selectedToken: null,
     }),
 }));

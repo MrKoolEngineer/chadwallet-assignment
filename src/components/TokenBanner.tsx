@@ -1,28 +1,29 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useGetTrendingTokens } from "@/hooks/useGetTrendingTokens";
+
+import { TrendingToken } from "@/types/token";
 import { formatPercentage, formatPrice } from "@/utils/token";
+import { DEFAULT_CHAIN } from "@/constants/chain";
 
 interface TokenBannerProps {
+  tokens: TrendingToken[];
+  isLoading: boolean;
+  isError: boolean;
   chain?: string;
   direction?: "forward" | "reverse";
   position?: "top" | "bottom";
 }
 
 export default function TokenBanner({
-  chain = "solana",
+  tokens,
+  isLoading = false,
+  isError = false,
+  chain = DEFAULT_CHAIN,
   direction = "forward",
   position = "top",
 }: TokenBannerProps) {
   const router = useRouter();
-
-  const {
-    data: trendingTokens,
-    isLoading,
-    isError,
-    error,
-  } = useGetTrendingTokens({ chain });
 
   const animationClass =
     direction === "reverse" ? "animate-marquee-reverse" : "animate-marquee";
@@ -46,7 +47,7 @@ export default function TokenBanner({
     );
   }
 
-  if (isError || !trendingTokens || trendingTokens.length === 0) {
+  if (isError || tokens.length === 0) {
     return (
       <div className={bannerContainerStyle}>
         <div className="px-6 w-full flex items-center">
@@ -58,11 +59,7 @@ export default function TokenBanner({
     );
   }
 
-  const duplicatedTokens = [
-    ...trendingTokens,
-    ...trendingTokens,
-    ...trendingTokens,
-  ];
+  const duplicatedTokens = [...tokens, ...tokens, ...tokens];
 
   return (
     <div className={bannerContainerStyle}>
@@ -70,10 +67,6 @@ export default function TokenBanner({
         {duplicatedTokens.map((token, idx) => {
           const changePercent = token.price24hChangePercent ?? 0;
           const isPositive = changePercent >= 0;
-
-          const formattedPrice = formatPrice(token.price);
-
-          const formattedChange = formatPercentage(token.price24hChangePercent);
 
           const handleNavigation = () => {
             router.push(`/tokens/${chain}/${token.address}?timeFrame=1D`);
@@ -88,19 +81,21 @@ export default function TokenBanner({
               <span className="text-sm font-black text-white group-hover:text-chad-green transition-colors uppercase tracking-wider">
                 {token.symbol}
               </span>
+
               <span className="text-sm font-semibold font-mono text-slate-200">
-                {formattedPrice}
+                {formatPrice(token.price)}
               </span>
+
               <span
                 className={`text-sm font-black font-mono tracking-tight ${
-                  token.price24hChangePercent === null
+                  token.price24hChangePercent == null
                     ? "text-amber-400"
                     : isPositive
                       ? "text-chad-green"
                       : "text-chad-red"
                 }`}
               >
-                {formattedChange}
+                {formatPercentage(token.price24hChangePercent)}
               </span>
             </div>
           );

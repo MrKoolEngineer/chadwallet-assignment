@@ -1,9 +1,17 @@
 "use client";
 
+import { LoginRedirectToken } from "@/types/token";
 import { useAuthTrigger } from "@/hooks/useAuthTrigger";
 
-export default function Hero() {
-  const { login } = useAuthTrigger();
+interface HeroProps {
+  defaultToken?: LoginRedirectToken;
+  isLoading?: boolean;
+}
+
+export default function Hero({ defaultToken, isLoading = false }: HeroProps) {
+  const { login, isReady } = useAuthTrigger({
+    defaultToken,
+  });
 
   return (
     <section className="flex-1 flex flex-col items-center justify-center text-center px-6 max-w-4xl mx-auto relative select-none">
@@ -16,12 +24,13 @@ export default function Hero() {
 
       <p className="text-slate-400 font-medium max-w-lg text-sm md:text-base leading-relaxed mb-8">
         Experience lightning-fast token execution, embedded analytics, and
-        premium asset management on Solana's elite workflow interface.
+        premium asset management on Solana&apos;s elite workflow interface.
       </p>
 
       <button
+        disabled={!isReady || isLoading || !defaultToken}
         onClick={login}
-        className="bg-chad-green text-chad-bg font-black text-sm md:text-base px-8 py-4 rounded-xl shadow-[0_4px_24px_rgba(16,216,118,0.3)] hover:opacity-90 active:scale-98 transition-all cursor-pointer"
+        className="bg-chad-green text-chad-bg font-black text-sm md:text-base px-8 py-4 rounded-xl shadow-[0_4px_24px_rgba(16,216,118,0.3)] hover:opacity-90 active:scale-98 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
       >
         Start Trading Now
       </button>

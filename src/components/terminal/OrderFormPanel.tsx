@@ -3,10 +3,14 @@
 import { useState } from "react";
 
 interface OrderFormPanelProps {
-  token: Token;
+  chain: string;
+  address: string;
 }
 
-export default function OrderFormPanel({ token }: OrderFormPanelProps) {
+export default function OrderFormPanel({
+  chain,
+  address,
+}: OrderFormPanelProps) {
   const [tradeAmount, setTradeAmount] = useState<string>("");
   const [side, setSide] = useState<"buy" | "sell">("buy");
 
@@ -60,7 +64,7 @@ export default function OrderFormPanel({ token }: OrderFormPanelProps) {
       <button
         onClick={() =>
           alert(
-            `Submitted ${tradeAmount} SOL ${side.toUpperCase()} order for ${token.symbol}`,
+            `Submitted ${tradeAmount} SOL ${side.toUpperCase()} order for ${address} on ${chain}.`,
           )
         }
         disabled={!tradeAmount}

@@ -11,7 +11,7 @@ export function useGetTrendingTokens({
   refetchInterval = 1000 * 60 * 3, // Default to 3 minutes
 }: UseGetTrendingTokensOptions) {
   return useQuery({
-    queryKey: ["birdeye", "trending", chain],
+    queryKey: ["birdeye", "trendingTokens", chain],
     queryFn: () => getTrendingTokens(chain),
     staleTime: 1000 * 60 * 3, // Consider data "fresh" for 3 minutes
     gcTime: 1000 * 60 * 5, // Keep in garbage collection memory for 5 minutes

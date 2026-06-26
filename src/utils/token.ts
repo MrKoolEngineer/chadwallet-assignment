@@ -45,3 +45,14 @@ export function formatUsdCompact(value: number | null | undefined): string {
 
   return compactUsdFormatter.format(value);
 }
+
+export function formatCompactNumber(value: number | null | undefined): string {
+  if (value == null || Number.isNaN(value)) {
+    return "--";
+  }
+
+  return new Intl.NumberFormat("en-US", {
+    notation: "compact",
+    maximumFractionDigits: 2,
+  }).format(value);
+}

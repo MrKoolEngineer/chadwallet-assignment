@@ -1,35 +1,16 @@
 import { birdeyeApi } from "./api";
 
-export interface TrendingToken {
-  address: string;
-  symbol: string;
-  name: string;
-  decimals: number;
-  price: number;
-  rank: number;
-  liquidity: number;
-  logoURI?: string;
-  volume24hUSD: number;
-  volume24hChangePercent: number;
-  price24hChangePercent: number;
-  fdv: number;
-  marketcap: number;
-}
-
-export interface BirdeyeTrendingDataPayload {
-  updateUnixTime: number;
-  updateTime: string;
-  tokens: TrendingToken[];
-  total: number;
-}
-
-export interface BirdeyeApiResponse<T> {
-  success: boolean;
-  data: T;
-}
+import { TrendingToken, TokenStats } from "@/types/token";
+import {
+  BirdeyeApiResponse,
+  BirdeyeTokenOverviewPayload,
+  BirdeyeTrendingDataPayload,
+  GetTokenStatsOptions,
+} from "@/types/birdeye";
+import { DEFAULT_CHAIN } from "@/constants/chain";
 
 export const getTrendingTokens = async (
-  chain: string = "solana",
+  chain: string = DEFAULT_CHAIN,
   limit: number = 20,
 ): Promise<TrendingToken[]> => {
   try {
@@ -51,6 +32,42 @@ export const getTrendingTokens = async (
     return envelope?.data?.tokens || [];
   } catch (error) {
     console.error("Error in getTrendingTokens service:", error);
+    throw error;
+  }
+};
+
+export const getTokenStats = async ({
+  chain = DEFAULT_CHAIN,
+  address,
+}: GetTokenStatsOptions): Promise<TokenStats> => {
+  try {
+    const response = await birdeyeApi.get<
+      BirdeyeApiResponse<BirdeyeTokenOverviewPayload>
+    >("/defi/token_overview", {
+      headers: {
+        "x-chain": chain,
+      },
+      params: {
+        address,
+      },
+    });
+
+    const token = response.data.data;
+
+    return {
+      address: token.address,
+      symbol: token.symbol,
+      name: token.name,
+      logoURI: token.logoURI,
+
+      price: token.price,
+      marketCap: token.marketCap,
+      liquidity: token.liquidity,
+      v24hUSD: token.v24hUSD,
+      price24hChangePercent: token.price24hChangePercent,
+    };
+  } catch (error) {
+    console.error("Error fetching token stats:", error);
     throw error;
   }
 };
