@@ -3,7 +3,6 @@
 import { useState } from "react";
 
 import TokenHeader from "./TokenHeader";
-import TimeframeTabs from "./TimeframeTabs";
 import TradingViewChart from "./TradingViewChart";
 import TopHoldersPanel from "./TopHoldersPanel";
 import LiveTradesPanel from "./LiveTradesPanel";
