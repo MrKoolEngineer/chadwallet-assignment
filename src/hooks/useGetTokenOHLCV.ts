@@ -17,8 +17,8 @@ export function useGetTokenOHLCV({
   address,
   interval = "15m",
   currency = "usd",
-  countLimit = 200,
-  refetchInterval = 15000,
+  countLimit = 100,
+  refetchInterval = 30000,
 }: UseGetTokenOHLCVOptions) {
   return useQuery({
     queryKey: [
@@ -47,7 +47,7 @@ export function useGetTokenOHLCV({
     gcTime: 5 * 60 * 1000,
 
     refetchInterval,
-
+    refetchIntervalInBackground: false,
     refetchOnWindowFocus: false,
   });
 }
