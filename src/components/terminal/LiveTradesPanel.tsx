@@ -1,6 +1,8 @@
 "use client";
 
 import LoadingState from "../common/LoadingState";
+import ErrorState from "../common/ErrorState";
+
 import { useGetTokenTrades } from "@/hooks/useGetTokenTrades";
 import { timeAgo } from "@/utils/time";
 import { formatCompactNumber } from "@/utils/token";
@@ -22,8 +24,8 @@ export default function LiveTradesPanel({ chain, address }: Props) {
 
   if (isError || !data) {
     return (
-      <div className="flex-1 flex items-center justify-center text-chad-red font-mono">
-        Failed to load trades.
+      <div className="card flex-1">
+        <ErrorState label="Failed to load trades." />
       </div>
     );
   }

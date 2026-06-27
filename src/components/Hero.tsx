@@ -28,7 +28,7 @@ export default function Hero({ defaultToken, isLoading = false }: HeroProps) {
       </p>
 
       <button
-        disabled={!isReady || isLoading || !defaultToken}
+        disabled={!isReady}
         onClick={login}
         className="bg-chad-green text-chad-bg font-black text-sm md:text-base px-8 py-4 rounded-xl shadow-[0_4px_24px_rgba(16,216,118,0.3)] hover:opacity-90 active:scale-98 transition-all cursor-pointer disabled:cursor-not-allowed"
       >

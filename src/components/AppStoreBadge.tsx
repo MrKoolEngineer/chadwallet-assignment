@@ -39,7 +39,7 @@ export default function AppStoreBadge({
       rel="noopener noreferrer"
       className={`group rounded-xl border border-white/10 bg-slate-900/50 transition-all hover:bg-slate-900/90 ${
         fullWidth
-          ? "flex w-full justify-start px-6 py-4"
+          ? "flex w-full justify-start px-6 py-2"
           : "flex items-center gap-3.5 px-4 py-2"
       }`}
     >
@@ -53,9 +53,7 @@ export default function AppStoreBadge({
           {current.path}
         </svg>
 
-        <div
-          className={`flex flex-col ${fullWidth ? "items-start" : "gap-0.5"}`}
-        >
+        <div className={`flex flex-col ${fullWidth ? "items-start" : ""}`}>
           <span
             className={`font-bold uppercase tracking-wider text-slate-400  ${
               fullWidth ? "text-[11px]" : "text-[10px]"
@@ -66,7 +64,7 @@ export default function AppStoreBadge({
 
           <span
             className={`font-extrabold text-slate-100  transition-colors group-hover:text-white ${
-              fullWidth ? "text-m mt-1" : "text-sm"
+              fullWidth ? "text-sm" : "text-sm"
             }`}
           >
             {current.mainText}

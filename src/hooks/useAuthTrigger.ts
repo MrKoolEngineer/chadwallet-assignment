@@ -4,10 +4,21 @@ import { useRouter } from "next/navigation";
 import { useLogin, useLogout, usePrivy } from "@privy-io/react-auth";
 
 import { LoginRedirectToken } from "@/types/token";
+import { DEFAULT_CHAIN } from "@/constants/chain";
 
 interface UseAuthTriggerProps {
   defaultToken?: LoginRedirectToken | null;
 }
+
+// Fallback token used when Trending API is unavailable.
+// Replace the address below with whichever token you want
+// users to land on by default (SOL, USDC, etc.).
+const FALLBACK_TOKEN: LoginRedirectToken = {
+  chain: DEFAULT_CHAIN,
+  address: "So11111111111111111111111111111111111111112",
+  symbol: "SOL",
+  name: "Solana",
+};
 
 export function useAuthTrigger({ defaultToken }: UseAuthTriggerProps = {}) {
   const router = useRouter();
@@ -15,11 +26,9 @@ export function useAuthTrigger({ defaultToken }: UseAuthTriggerProps = {}) {
   const { authenticated, ready } = usePrivy();
 
   const navigateToTrading = () => {
-    if (!defaultToken) return;
+    const token = defaultToken ?? FALLBACK_TOKEN;
 
-    router.push(
-      `/tokens/${defaultToken.chain}/${defaultToken.address}?timeFrame=1D`,
-    );
+    router.push(`/tokens/${token.chain}/${token.address}?timeFrame=1D`);
   };
 
   const { login } = useLogin({
@@ -48,7 +57,6 @@ export function useAuthTrigger({ defaultToken }: UseAuthTriggerProps = {}) {
 
   const { logout } = useLogout({
     onSuccess: () => {
-      router.push("/");
       console.log("Terminal session terminated cleanly.");
     },
   });

@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import LoadingState from "../common/LoadingState";
+import ErrorState from "../common/ErrorState";
 
 import { useGetTrendingTokens } from "@/hooks/useGetTrendingTokens";
 import { formatPercentage, formatPrice } from "@/utils/token";
@@ -35,10 +36,8 @@ export default function TrendingPanel({
 
   if (isError || !trendingTokens || trendingTokens.length === 0) {
     return (
-      <aside className="w-72 bg-chad-bg">
-        <div className="p-4 text-sm text-chad-red">
-          Unable to load trending tokens.
-        </div>
+      <aside className="card w-72">
+        <ErrorState label="Unable to load trending tokens." />
       </aside>
     );
   }

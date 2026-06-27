@@ -26,11 +26,7 @@ export default function Navbar({
       <div className="flex items-center gap-3">
         <AppStoreBadge platform="apple" />
         <AppStoreBadge platform="google" />
-        <NavButton
-          label="Login"
-          disabled={!isReady || isLoading || !defaultToken}
-          onClick={login}
-        />
+        <NavButton label="Login" disabled={!isReady} onClick={login} />
       </div>
     </header>
   );

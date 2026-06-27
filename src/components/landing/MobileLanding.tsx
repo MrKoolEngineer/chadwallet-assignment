@@ -53,13 +53,6 @@ export default function MobileLanding() {
 
           <AppStoreBadge platform="google" fullWidth />
         </div>
-
-        <div className="max-w-xs mt-8 rounded-xl border border-chad-border bg-chad-surface/40 px-5 py-4">
-          <p className="text-xs leading-6 text-slate-500">
-            Trading is currently available on desktop. Download the ChadWallet
-            app to trade on mobile.
-          </p>
-        </div>
       </main>
 
       {/* Bottom Banner */}

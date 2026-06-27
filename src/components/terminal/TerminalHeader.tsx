@@ -24,7 +24,7 @@ export default function TerminalHeader({ chain }: TerminalHeaderProps) {
             <span className="text-chad-green font-bold uppercase">{chain}</span>
           </div>
           <div className="text-sm">
-            STATUS: <span className="text-slate-300 font-bold">CONNECTED</span>
+            STATUS: <span className="text-slate-300 font-bold">SIMULATION</span>
           </div>
         </div>
       </div>

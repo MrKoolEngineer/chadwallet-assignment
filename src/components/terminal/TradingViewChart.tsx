@@ -11,6 +11,8 @@ import {
 } from "lightweight-charts";
 
 import LoadingState from "../common/LoadingState";
+import ErrorState from "../common/ErrorState";
+
 import { useGetTokenOHLCV } from "@/hooks/useGetTokenOHLCV";
 import { ChartInterval } from "@/types/chart";
 
@@ -27,13 +29,22 @@ export default function TradingViewChart({
   address,
   interval,
 }: TradingViewChartProps) {
+  console.log("=> TradingViewChart rendered");
   const containerRef = useRef<HTMLDivElement>(null);
+
+  console.log("=> testing", {
+    chain,
+    address,
+    interval,
+  });
 
   const { data, isLoading, isError } = useGetTokenOHLCV({
     chain,
     address,
     interval,
   });
+
+  console.log("=> query", { data, isLoading, isError });
 
   useLayoutEffect(() => {
     if (!containerRef.current || !data?.items?.length) return;
@@ -166,14 +177,7 @@ export default function TradingViewChart({
   }
 
   if (isError) {
-    return (
-      <div
-        style={{ height: CHART_HEIGHT }}
-        className="flex items-center justify-center text-chad-red font-mono"
-      >
-        Failed to load chart.
-      </div>
-    );
+    return <ErrorState label="Failed to load chart." height={CHART_HEIGHT} />;
   }
 
   return (

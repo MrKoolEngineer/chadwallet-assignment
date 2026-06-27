@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
+import ErrorState from "./common/ErrorState";
 import { TrendingToken } from "@/types/token";
 import { formatPercentage, formatPrice } from "@/utils/token";
 import { DEFAULT_CHAIN } from "@/constants/chain";
@@ -52,11 +53,10 @@ export default function TokenBanner({
   if (isError || tokens.length === 0) {
     return (
       <div className={bannerContainerStyle}>
-        <div className="px-6 w-full flex items-center">
-          <span className="text-sm font-semibold font-mono text-chad-red/70 tracking-wider">
-            [ DATAFEED LINK OFFLINE ]
-          </span>
-        </div>
+        <ErrorState
+          label="[ DATAFEED LINK OFFLINE ]"
+          className="px-6 justify-start"
+        />
       </div>
     );
   }

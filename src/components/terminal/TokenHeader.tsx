@@ -1,5 +1,7 @@
 "use client";
 
+import ErrorState from "../common/ErrorState";
+
 import { useGetTokenStats } from "@/hooks/useGetTokenStats";
 
 import {
@@ -33,8 +35,8 @@ export default function TokenHeader({ chain, address }: TokenHeaderProps) {
 
   if (isError || !token) {
     return (
-      <div className="h-23 border-b border-chad-border bg-chad-surface/30 flex items-center justify-center shrink-0">
-        <span className="text-chad-red font-mono">Failed to load token.</span>
+      <div className="h-23 border-b border-chad-border shrink-0">
+        <ErrorState label="Failed to load token." height="100%" />
       </div>
     );
   }
