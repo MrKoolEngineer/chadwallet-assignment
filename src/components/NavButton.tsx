@@ -11,7 +11,6 @@ export default function NavButton({
   label,
   disabled = false,
   onClick,
-  variant = "primary",
 }: NavButtonProps) {
   return (
     <button

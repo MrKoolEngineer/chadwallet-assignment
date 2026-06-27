@@ -8,7 +8,7 @@ interface HeroProps {
   isLoading?: boolean;
 }
 
-export default function Hero({ defaultToken, isLoading = false }: HeroProps) {
+export default function Hero({ defaultToken }: HeroProps) {
   const { login, isReady } = useAuthTrigger({
     defaultToken,
   });

@@ -23,7 +23,6 @@ export default function TrendingPanel({
     data: trendingTokens,
     isLoading,
     isError,
-    error,
   } = useGetTrendingTokens({ chain });
 
   if (isLoading) {

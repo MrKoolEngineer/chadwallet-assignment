@@ -12,10 +12,7 @@ interface NavbarProps {
   isLoading?: boolean;
 }
 
-export default function Navbar({
-  defaultToken,
-  isLoading = false,
-}: NavbarProps) {
+export default function Navbar({ defaultToken }: NavbarProps) {
   const { login, isReady } = useAuthTrigger({
     defaultToken,
   });
