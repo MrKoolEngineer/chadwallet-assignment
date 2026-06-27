@@ -22,8 +22,12 @@ export default function ChartPanel({ chain, address }: ChartPanelProps) {
     <section className="flex-1 flex flex-col overflow-hidden">
       <div className="card mb-2 overflow-hidden">
         <TokenHeader chain={chain} address={address} />
-        <TimeframeTabs interval={interval} onChange={setInterval} />
-        <TradingViewChart chain={chain} address={address} interval={interval} />
+        <TradingViewChart
+          chain={chain}
+          address={address}
+          interval={interval}
+          onIntervalChange={setInterval}
+        />
       </div>
 
       <div className="flex-1 min-h-0 grid grid-cols-2 gap-2">

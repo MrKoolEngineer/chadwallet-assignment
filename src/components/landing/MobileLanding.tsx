@@ -18,7 +18,6 @@ export default function MobileLanding() {
 
   return (
     <div className="min-h-screen bg-chad-bg text-slate-50 flex flex-col overflow-hidden">
-      {/* Top Banner */}
       <TokenBanner
         tokens={tokens}
         isLoading={isLoading}
@@ -28,12 +27,10 @@ export default function MobileLanding() {
         disableNavigation
       />
 
-      {/* Logo */}
       <header className="flex justify-center py-8">
         <Logo />
       </header>
 
-      {/* Hero */}
       <main className="flex-1 flex flex-col items-center justify-center px-6 text-center">
         <div className="absolute top-44 w-72 h-72 bg-chad-green/10 rounded-full blur-[120px] pointer-events-none" />
 
@@ -55,7 +52,6 @@ export default function MobileLanding() {
         </div>
       </main>
 
-      {/* Bottom Banner */}
       <TokenBanner
         tokens={tokens}
         isLoading={isLoading}

@@ -19,7 +19,11 @@ export default function LiveTradesPanel({ chain, address }: Props) {
   });
 
   if (isLoading) {
-    return <LoadingState label="Loading live trades..." />;
+    return (
+      <div className="card flex-1">
+        <LoadingState label="Loading live trades..." />
+      </div>
+    );
   }
 
   if (isError || !data) {

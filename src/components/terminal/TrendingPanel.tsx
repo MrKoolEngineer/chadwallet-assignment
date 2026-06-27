@@ -27,7 +27,7 @@ export default function TrendingPanel({
 
   if (isLoading) {
     return (
-      <aside className="w-72 bg-chad-bg">
+      <aside className="card w-72">
         <LoadingState label="Loading trending tokens..." />
       </aside>
     );

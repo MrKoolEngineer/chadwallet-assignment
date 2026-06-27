@@ -42,7 +42,7 @@ export default function TokenBanner({
     return (
       <div className={bannerContainerStyle}>
         <div className="px-6 w-full animate-pulse flex items-center">
-          <span className="text-sm font-semibold font-mono text-amber-500/70 tracking-wider">
+          <span className="text-sm font-semibold text-slate-400 font-mono tracking-wider animate-pulse">
             [ LOADING NETWORK MARQUEE FEED... ]
           </span>
         </div>
@@ -54,7 +54,7 @@ export default function TokenBanner({
     return (
       <div className={bannerContainerStyle}>
         <ErrorState
-          label="[ DATAFEED LINK OFFLINE ]"
+          label="[ DATA FEED OFFLINE ]"
           className="px-6 justify-start"
         />
       </div>

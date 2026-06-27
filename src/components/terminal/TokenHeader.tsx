@@ -29,7 +29,7 @@ export default function TokenHeader({ chain, address }: TokenHeaderProps) {
 
   if (isLoading) {
     return (
-      <div className="h-23 border-b border-chad-border bg-chad-surface/30 flex items-center justify-center shrink-0">
+      <div className="h-23 border-b border-chad-border flex items-center justify-center shrink-0">
         <span className="text-slate-500 font-mono">Loading token...</span>
       </div>
     );

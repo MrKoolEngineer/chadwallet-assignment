@@ -10,6 +10,7 @@ import {
   UTCTimestamp,
 } from "lightweight-charts";
 
+import TimeframeTabs from "./TimeframeTabs";
 import LoadingState from "../common/LoadingState";
 import ErrorState from "../common/ErrorState";
 
@@ -20,6 +21,7 @@ interface TradingViewChartProps {
   chain: string;
   address: string;
   interval: ChartInterval;
+  onIntervalChange: (value: ChartInterval) => void;
 }
 
 const CHART_HEIGHT = 420;
@@ -28,23 +30,15 @@ export default function TradingViewChart({
   chain,
   address,
   interval,
+  onIntervalChange,
 }: TradingViewChartProps) {
-  console.log("=> TradingViewChart rendered");
   const containerRef = useRef<HTMLDivElement>(null);
-
-  console.log("=> testing", {
-    chain,
-    address,
-    interval,
-  });
 
   const { data, isLoading, isError } = useGetTokenOHLCV({
     chain,
     address,
     interval,
   });
-
-  console.log("=> query", { data, isLoading, isError });
 
   useLayoutEffect(() => {
     if (!containerRef.current || !data?.items?.length) return;
@@ -76,7 +70,6 @@ export default function TradingViewChart({
 
       rightPriceScale: {
         borderColor: "#1E293B",
-
         scaleMargins: {
           top: 0.05,
           bottom: 0.25,
@@ -91,8 +84,6 @@ export default function TradingViewChart({
         barSpacing: 8,
       },
     });
-
-    // Candlestick series
 
     const candleSeries = chart.addSeries(CandlestickSeries, {
       upColor: "#4ADE80",
@@ -110,8 +101,6 @@ export default function TradingViewChart({
         minMove: 0.00000001,
       },
     });
-
-    // Volume histogram
 
     const volumeSeries = chart.addSeries(HistogramSeries, {
       priceScaleId: "volume",
@@ -172,19 +161,30 @@ export default function TradingViewChart({
     };
   }, [chain, address, data]);
 
-  if (isLoading) {
-    return <LoadingState label="Loading chart..." height={CHART_HEIGHT} />;
-  }
-
-  if (isError) {
-    return <ErrorState label="Failed to load chart." height={CHART_HEIGHT} />;
-  }
-
   return (
-    <div
-      ref={containerRef}
-      className="w-full"
-      style={{ height: CHART_HEIGHT }}
-    />
+    <>
+      {/* Reserve space for timeframe tabs to avoid layout shift */}
+      <div className="h-11">
+        {!isLoading && (
+          <TimeframeTabs interval={interval} onChange={onIntervalChange} />
+        )}
+      </div>
+
+      {isLoading && (
+        <LoadingState label="Loading chart..." height={CHART_HEIGHT} />
+      )}
+
+      {isError && (
+        <ErrorState label="⚠ Failed to load chart." height={CHART_HEIGHT} />
+      )}
+
+      {!isLoading && !isError && (
+        <div
+          ref={containerRef}
+          className="w-full"
+          style={{ height: CHART_HEIGHT }}
+        />
+      )}
+    </>
   );
 }

@@ -19,7 +19,11 @@ export default function TopHoldersPanel({ chain, address }: Props) {
   });
 
   if (isLoading) {
-    return <LoadingState label="Loading holders..." />;
+    return (
+      <div className="card flex-1">
+        <LoadingState label="Loading holders..." />
+      </div>
+    );
   }
 
   if (isError || !data) {

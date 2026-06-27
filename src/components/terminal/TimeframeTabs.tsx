@@ -13,7 +13,7 @@ export default function TimeframeTabs({
   onChange,
 }: TimeframeTabsProps) {
   return (
-    <div className="flex items-center gap-2 px-4 py-2 border-b border-chad-border bg-chad-surface/20">
+    <div className="flex items-center gap-2 px-4 py-2 border-b border-chad-border">
       {CHART_INTERVALS.map(({ label, value }) => {
         const active = value === interval;
 
