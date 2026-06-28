@@ -9,34 +9,7 @@ interface QRPopupProps {
 export default function QRPopup({ open }: QRPopupProps) {
   return (
     <div
-      className={`
-        absolute
-        top-16
-        right-0
-        z-50
-
-        w-52
-
-        rounded-3xl
-
-        border
-        border-white/5
-
-        bg-chad-card/95
-
-        p-4
-
-        backdrop-blur-xl
-
-        transition-all
-        duration-300
-
-        ${
-          open
-            ? "scale-100 opacity-100"
-            : "pointer-events-none scale-95 opacity-0"
-        }
-      `}
+      className={`absolute top-16 right-0 z-50 w-52 rounded-3xl border border-white/5 bg-chad-card/95 p-4 backdrop-blur-xl transition-all duration-300 ${open ? "scale-100 opacity-100" : "pointer-events-none scale-95 opacity-0"}`}
     >
       <Image
         height={100}

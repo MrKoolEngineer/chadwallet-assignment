@@ -46,9 +46,9 @@ export default function MobileLanding() {
         </p>
 
         <div className="mt-10 w-full max-w-xs space-y-4">
-          <AppStoreBadge platform="apple" fullWidth />
+          <AppStoreBadge platform="apple" />
 
-          <AppStoreBadge platform="google" fullWidth />
+          <AppStoreBadge platform="google" />
         </div>
       </main>
 

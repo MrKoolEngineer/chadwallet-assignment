@@ -11,16 +11,7 @@ export default function HeroBackground() {
       width={1920}
       height={1080}
       draggable={false}
-      className="
-        pointer-events-none
-        absolute
-        top-0
-        left-0
-        z-10
-        w-full
-        h-auto
-        select-none
-      "
+      className="pointer-events-none absolute top-0 left-0 z-10 w-full h-auto select-none"
     />
   );
 }

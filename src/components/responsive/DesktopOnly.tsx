@@ -23,9 +23,9 @@ export default function DesktopOnly() {
         </div>
 
         <div className="space-y-3">
-          <AppStoreBadge platform="apple" fullWidth />
+          <AppStoreBadge platform="apple" />
 
-          <AppStoreBadge platform="google" fullWidth />
+          <AppStoreBadge platform="google" />
         </div>
 
         <div className="mt-8 rounded-xl border border-chad-border bg-chad-bg p-4">

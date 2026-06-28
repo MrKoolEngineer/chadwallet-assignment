@@ -36,21 +36,7 @@ export default function TokenBanner({
       ? "border-t border-white/10 mt-auto"
       : "border-b border-white/10";
 
-  const bannerContainerStyle = `
-    w-full
-    h-12
-    bg-slate-900/60
-    backdrop-blur-md
-    border-y
-    border-white/5
-    overflow-hidden
-    whitespace-nowrap
-    flex
-    items-center
-    z-20
-    select-none
-    ${borderClass}
-  `;
+  const bannerContainerStyle = `w-full h-12 bg-slate-900/60 backdrop-blur-md border-y border-white/5 overflow-hidden whitespace-nowrap flex items-center z-20 select-none ${borderClass}`;
 
   if (isLoading) {
     return (
@@ -94,18 +80,7 @@ export default function TokenBanner({
             <div
               key={`${token.address}-${idx}`}
               onClick={handleNavigation}
-              className="
-                group
-                inline-flex
-                cursor-pointer
-                items-center
-                gap-3
-                rounded-md
-                px-2.5
-                py-1
-                transition-all
-                hover:bg-white/10
-              "
+              className="group inline-flex cursor-pointer items-center gap-3 rounded-md px-2.5 py-1 transition-all hover:bg-white/10"
             >
               <span className="text-sm font-black uppercase tracking-wider text-white transition-colors group-hover:text-chad-green">
                 {token.symbol}

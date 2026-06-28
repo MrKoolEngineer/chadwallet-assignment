@@ -13,9 +13,7 @@ interface HeroActionsProps {
 }
 
 export default function HeroActions({ defaultToken }: HeroActionsProps) {
-  const { login, isReady } = useAuthTrigger({
-    defaultToken,
-  });
+  const { login, isReady } = useAuthTrigger({ defaultToken });
 
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -31,7 +29,6 @@ export default function HeroActions({ defaultToken }: HeroActionsProps) {
     }
 
     document.addEventListener("mousedown", close);
-
     return () => document.removeEventListener("mousedown", close);
   }, []);
 
@@ -41,27 +38,7 @@ export default function HeroActions({ defaultToken }: HeroActionsProps) {
 
       <button
         onClick={() => setOpen(true)}
-        className="
-          desktop:hidden
-
-          w-52
-          rounded-xl
-          border
-          border-white/5
-
-          bg-chad-surface/80
-          py-3
-
-          text-lg
-          font-bold
-
-          backdrop-blur-md
-
-          transition-all
-          duration-300
-
-          hover:bg-chad-surface
-        "
+        className="desktop:hidden w-52 rounded-xl border border-white/5 bg-chad-surface/80 py-3 text-lg font-bold backdrop-blur-md transition-all duration-300 hover:bg-chad-surface"
       >
         Download App
       </button>
@@ -74,67 +51,13 @@ export default function HeroActions({ defaultToken }: HeroActionsProps) {
         <button
           disabled={!isReady}
           onClick={login}
-          className="
-            group
-
-            flex
-            h-14
-            w-52
-
-            items-center
-            justify-center
-
-            overflow-hidden
-
-            rounded-xl
-
-            border
-            border-white/5
-
-            bg-chad-green/90
-
-            font-bold
-            text-chad-bg
-
-            backdrop-blur-md
-
-            transition-all
-            duration-300
-
-            hover:bg-chad-green
-            hover:shadow-glow
-          "
+          className="group flex h-14 w-52 items-center justify-center overflow-hidden rounded-xl border border-white/5 bg-chad-green/90 font-bold text-chad-bg backdrop-blur-md transition-all duration-300 hover:bg-chad-green hover:shadow-glow"
         >
-          <span
-            className="
-              transition-transform
-              duration-300
-              group-hover:-translate-x-2
-            "
-          >
+          <span className="transition-transform duration-300 group-hover:-translate-x-2">
             Start Trading
           </span>
 
-          <div
-            className="
-              flex
-
-              w-0
-
-              items-center
-
-              overflow-hidden
-
-              opacity-0
-
-              transition-all
-              duration-300
-              ease-out
-
-              group-hover:w-7
-              group-hover:opacity-100
-            "
-          >
+          <div className="flex w-0 items-center overflow-hidden opacity-0 transition-all duration-300 ease-out group-hover:w-7 group-hover:opacity-100">
             <ArrowRight size={20} className="ml-2 shrink-0" />
           </div>
         </button>
@@ -143,58 +66,9 @@ export default function HeroActions({ defaultToken }: HeroActionsProps) {
 
         <button
           onClick={() => setOpen((v) => !v)}
-          className="
-            group
-
-            flex
-            h-14
-            w-52
-
-            items-center
-            justify-center
-
-            overflow-hidden
-
-            rounded-xl
-
-            border
-            border-white/5
-
-            bg-chad-surface/70
-
-            font-bold
-
-            text-white
-
-            backdrop-blur-md
-
-            transition-all
-            duration-300
-
-            hover:bg-chad-surface
-            hover:border-white/10
-          "
+          className="group flex h-14 w-52 items-center justify-center overflow-hidden rounded-xl border border-white/5 bg-chad-surface/70 font-bold text-white backdrop-blur-md transition-all duration-300 hover:bg-chad-surface hover:border-white/10"
         >
-          <div
-            className="
-              flex
-
-              w-0
-
-              items-center
-
-              overflow-hidden
-
-              opacity-0
-
-              transition-all
-              duration-300
-              ease-out
-
-              group-hover:w-7
-              group-hover:opacity-100
-            "
-          >
+          <div className="flex w-0 items-center overflow-hidden opacity-0 transition-all duration-300 ease-out group-hover:w-7 group-hover:opacity-100">
             <Download size={20} className="mr-2 shrink-0" />
           </div>
 

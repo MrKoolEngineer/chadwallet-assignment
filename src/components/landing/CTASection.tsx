@@ -20,63 +20,24 @@ export default function CTASection() {
 
       {/* Top Gradient */}
 
-      <div
-        className="
-          absolute
-          inset-x-0
-          top-0
-          h-40
-          bg-gradient-to-b
-          from-chad-bg
-          to-transparent
-        "
-      />
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-chad-bg to-transparent" />
 
       {/* Bottom Gradient */}
 
-      <div
-        className="
-          absolute
-          inset-x-0
-          bottom-0
-          h-40
-          bg-gradient-to-t
-          from-chad-bg
-          to-transparent
-        "
-      />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-chad-bg to-transparent" />
 
       {/* Content */}
 
       <div className="relative z-10 w-[80vw] px-8">
         <div className="relative flex aspect-square flex-col items-center justify-center">
           <div className="relative z-10 flex w-[70vw] flex-col items-center gap-3 desktop:gap-6">
-            <h2
-              className="
-                text-center
-                text-[40px]
-                leading-10
-                tracking-tighter
-
-                desktop:text-[60px]
-                desktop:leading-15
-              "
-            >
+            <h2 className="text-center text-[40px] leading-10 tracking-tighter desktop:text-[60px] desktop:leading-15">
               a trading app
               <br />
               for the rest of us
             </h2>
 
-            <p
-              className="
-                text-center
-                tracking-tight
-                text-chad-text-secondary
-
-                desktop:text-[22px]
-                desktop:leading-7
-              "
-            >
+            <p className="text-center tracking-tight text-chad-text-secondary desktop:text-[22px] desktop:leading-7">
               Join thousands of traders making their name with ChadWallet.
             </p>
 
