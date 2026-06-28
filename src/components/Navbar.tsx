@@ -18,12 +18,16 @@ export default function Navbar({ defaultToken }: NavbarProps) {
   });
 
   return (
-    <header className="w-full h-20 backdrop-blur-md bg-chad-bg/80 px-6 xl:px-12 flex items-center justify-between transition-all select-none">
-      <Logo />
-      <div className="flex items-center gap-3">
-        <AppStoreBadge platform="apple" />
-        <AppStoreBadge platform="google" />
-        <NavButton label="Login" disabled={!isReady} onClick={login} />
+    <header className="hidden desktop:block absolute top-0 left-0 z-50 w-full">
+      <div className="flex h-13 items-center justify-between px-5 pt-3">
+        <Logo />
+
+        <div className="flex items-center gap-2">
+          <AppStoreBadge platform="apple" />
+          <AppStoreBadge platform="google" />
+
+          <NavButton label="Login" disabled={!isReady} onClick={login} />
+        </div>
       </div>
     </header>
   );

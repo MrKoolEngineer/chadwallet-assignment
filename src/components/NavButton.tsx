@@ -4,7 +4,6 @@ interface NavButtonProps {
   label: string;
   disabled?: boolean;
   onClick: () => void;
-  variant?: "primary" | "secondary";
 }
 
 export default function NavButton({
@@ -14,9 +13,35 @@ export default function NavButton({
 }: NavButtonProps) {
   return (
     <button
+      type="button"
       disabled={disabled}
       onClick={onClick}
-      className="bg-chad-green text-chad-bg font-extrabold text-sm px-6 py-3 rounded-xl hover:opacity-90 active:scale-97 transition-all cursor-pointer shadow-[0_4px_16px_rgba(16,216,118,0.2)] tracking-wide uppercase h-12.5 flex items-center justify-center"
+      className="
+        flex
+        h-10
+        cursor-pointer
+        items-center
+        justify-center
+        rounded-lg
+        border
+        border-white/5
+        bg-chad-surface
+        px-5
+        text-m
+        font-bold
+        text-chad-text
+        backdrop-blur-md
+        transition-all
+        duration-300
+        ease-out
+        hover:-translate-y-0.5
+        hover:border-white/15
+        hover:bg-chad-surface/80
+        hover:shadow-glow
+        active:translate-y-0
+        disabled:pointer-events-none
+        disabled:opacity-50
+      "
     >
       {label}
     </button>

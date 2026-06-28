@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useAuthTrigger } from "@/hooks/useAuthTrigger";
 import Logo from "../Logo";
 
@@ -14,9 +13,7 @@ export default function TerminalHeader({ chain }: TerminalHeaderProps) {
   return (
     <header className="h-18 px-6 flex items-center justify-between shrink-0">
       <div className="flex items-center gap-4">
-        <Link href="/">
-          <Logo />
-        </Link>
+        <Logo />
         <div className="h-4 w-px" />
         <div className="flex items-center gap-4 text-[10px] font-mono text-slate-400">
           <div className="text-sm">

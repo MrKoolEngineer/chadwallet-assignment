@@ -1,8 +1,12 @@
 "use client";
 
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
+import Hero from "@/components/landing/Hero";
 import TokenBanner from "@/components/TokenBanner";
+import TradeAnywhere from "./TradeAnywhere";
+import Features from "./Features";
+import CTASection from "./CTASection";
+import Footer from "./Footer";
 
 import { useGetTrendingTokens } from "@/hooks/useGetTrendingTokens";
 import { DEFAULT_CHAIN } from "@/constants/chain";
@@ -24,22 +28,24 @@ export default function DesktopLanding() {
     : undefined;
 
   return (
-    <div className="min-h-screen bg-chad-bg text-slate-50 flex flex-col relative overflow-x-hidden select-none antialiased">
-      <div className="fixed top-0 left-0 right-0 z-50 flex flex-col">
-        <TokenBanner
+    <main className="relative min-h-screen overflow-x-hidden bg-chad-bg text-slate-50 antialiased select-none">
+      <div className="fixed inset-x-0 top-0 z-50">
+        {/* <TokenBanner
           tokens={tokens}
           isLoading={isLoading}
           isError={isError}
           direction="forward"
           position="top"
-        />
+        /> */}
 
         <Navbar defaultToken={defaultToken} isLoading={isLoading} />
       </div>
 
-      <div className="pt-36 flex-1 flex flex-col">
-        <Hero defaultToken={defaultToken} isLoading={isLoading} />
-      </div>
+      <Hero />
+      <TradeAnywhere />
+      <Features />
+      <CTASection />
+      <Footer />
 
       <TokenBanner
         tokens={tokens}
@@ -48,6 +54,6 @@ export default function DesktopLanding() {
         direction="reverse"
         position="bottom"
       />
-    </div>
+    </main>
   );
 }
