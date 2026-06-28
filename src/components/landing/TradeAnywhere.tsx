@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function TradeAnywhere() {
   return (
-    <section className="relative w-full">
+    <section className="relative w-full mt-10 desktop:mt-0">
       {/* ================= Desktop ================= */}
 
       <div className="hidden desktop:flex flex-col items-center gap-3 px-8 py-10">
@@ -67,7 +67,7 @@ export default function TradeAnywhere() {
         />
 
         <div className="absolute bottom-0 flex w-full flex-col gap-3 px-8 pb-8">
-          <h2 className="text-center text-[36px] font-black leading-9 tracking-tighter text-white">
+          <h2 className="text-center text-[36px] leading-9 tracking-tighter text-white">
             trade from anywhere.
             <br />
             never lose a beat.

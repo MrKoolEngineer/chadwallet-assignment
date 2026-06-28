@@ -10,13 +10,13 @@ const config = {
   apple: {
     href: "https://apps.apple.com/us/app/chadwallet/id6757367474",
     label: "Download on the App Store",
-    src: "/images/apple-cta.svg",
+    src: "/images/apple-cta.webp",
     width: 120,
   },
   google: {
     href: "https://play.google.com/store/apps/details?id=xyz.chadwallet.www",
     label: "Get it on Google Play",
-    src: "/images/google-cta.svg",
+    src: "/images/google-cta.webp",
     width: 135,
   },
 } as const;
@@ -45,10 +45,6 @@ export default function AppStoreBadge({ platform }: AppStoreBadgeProps) {
         transition-all
         duration-300
         ease-out
-        hover:-translate-y-0.5
-        hover:border-white/15
-        hover:bg-chad-surface/90
-        hover:shadow-glow
         active:translate-y-0
       "
     >
@@ -65,7 +61,6 @@ export default function AppStoreBadge({ platform }: AppStoreBadgeProps) {
           select-none
           transition-transform
           duration-300
-          group-hover:scale-[1.02]
         "
       />
     </a>

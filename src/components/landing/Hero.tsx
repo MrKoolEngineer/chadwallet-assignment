@@ -9,7 +9,7 @@ export default function Hero() {
     <section className="relative overflow-hidden">
       <HeroBackground />
 
-      <div className="section relative z-10 flex flex-col items-center pt-24 desktop:pt-32">
+      <div className="section relative z-10 flex flex-col items-center pt-18 desktop:pt-34">
         <HeroContent />
 
         <FloatingAstronaut />

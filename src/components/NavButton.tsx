@@ -34,10 +34,6 @@ export default function NavButton({
         transition-all
         duration-300
         ease-out
-        hover:-translate-y-0.5
-        hover:border-white/15
-        hover:bg-chad-surface/80
-        hover:shadow-glow
         active:translate-y-0
         disabled:pointer-events-none
         disabled:opacity-50

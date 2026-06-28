@@ -6,9 +6,8 @@ import { FOOTER_SECTIONS } from "./data/footer";
 
 export default function Footer() {
   return (
-    <footer className="section flex flex-col items-start justify-between gap-10 px-10 pt-8 pb-12 desktop:flex-row">
+    <footer className="m-0 w-full px-10 pt-8 pb-12 desktop:flex desktop:flex-row desktop:items-start desktop:justify-between">
       {/* Left */}
-
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-3">
           <Link
@@ -33,8 +32,7 @@ export default function Footer() {
       </div>
 
       {/* Right */}
-
-      <div className="flex flex-col items-start gap-8 desktop:flex-row desktop:gap-2">
+      <div className="mt-10 flex flex-col items-start gap-8 desktop:mt-0 desktop:flex-row desktop:gap-2">
         {FOOTER_SECTIONS.map((section) => (
           <div
             key={section.title}
@@ -70,8 +68,7 @@ export default function Footer() {
       </div>
 
       {/* Mobile Copyright */}
-
-      <span className="block text-chad-text-tertiary desktop:hidden">
+      <span className="mt-10 block text-chad-text-tertiary desktop:hidden">
         © 2026 ChadWallet Inc.
       </span>
     </footer>

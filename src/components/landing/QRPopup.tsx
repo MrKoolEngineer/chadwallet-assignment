@@ -41,7 +41,7 @@ export default function QRPopup({ open }: QRPopupProps) {
       <Image
         height={100}
         width={100}
-        src="/images/qr-code.png"
+        src="/images/qrcode.svg"
         alt="QR Code"
         className="mx-auto w-full rounded-2xl"
       />

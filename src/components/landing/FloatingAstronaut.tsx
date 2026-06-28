@@ -19,7 +19,7 @@ export default function FloatingAstronaut() {
         draggable={false}
         className="
           pointer-events-none
-          -mt-16
+          -mt-14
           h-auto
           animate-float
           object-contain

@@ -18,7 +18,7 @@ export default function Navbar({ defaultToken }: NavbarProps) {
   });
 
   return (
-    <header className="hidden desktop:block absolute top-0 left-0 z-50 w-full">
+    <header className="hidden desktop:block absolute top-12 left-0 z-50 w-full">
       <div className="flex h-13 items-center justify-between px-5 pt-3">
         <Logo />
 

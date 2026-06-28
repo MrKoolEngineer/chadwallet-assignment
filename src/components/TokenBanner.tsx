@@ -36,13 +36,27 @@ export default function TokenBanner({
       ? "border-t border-white/10 mt-auto"
       : "border-b border-white/10";
 
-  const bannerContainerStyle = `w-full bg-slate-900/60 border-y border-white/5 backdrop-blur-md h-[54px] py-0 overflow-hidden whitespace-nowrap flex items-center gap-8 z-20 select-none ${borderClass}`;
+  const bannerContainerStyle = `
+    w-full
+    h-12
+    bg-slate-900/60
+    backdrop-blur-md
+    border-y
+    border-white/5
+    overflow-hidden
+    whitespace-nowrap
+    flex
+    items-center
+    z-20
+    select-none
+    ${borderClass}
+  `;
 
   if (isLoading) {
     return (
       <div className={bannerContainerStyle}>
-        <div className="px-6 w-full animate-pulse flex items-center">
-          <span className="text-sm font-semibold text-slate-400 font-mono tracking-wider animate-pulse">
+        <div className="flex w-full items-center px-5 animate-pulse">
+          <span className="font-mono text-sm font-semibold tracking-wider text-slate-400">
             [ LOADING NETWORK MARQUEE FEED... ]
           </span>
         </div>
@@ -55,7 +69,7 @@ export default function TokenBanner({
       <div className={bannerContainerStyle}>
         <ErrorState
           label="[ DATA FEED OFFLINE ]"
-          className="px-6 justify-start"
+          className="justify-start px-5"
         />
       </div>
     );
@@ -65,13 +79,14 @@ export default function TokenBanner({
 
   return (
     <div className={bannerContainerStyle}>
-      <div className={`${animationClass} flex items-center gap-12 shrink-0`}>
+      <div className={`${animationClass} flex shrink-0 items-center gap-10`}>
         {duplicatedTokens.map((token, idx) => {
           const changePercent = token.price24hChangePercent ?? 0;
           const isPositive = changePercent >= 0;
 
           const handleNavigation = () => {
             if (disableNavigation) return;
+
             router.push(`/tokens/${chain}/${token.address}?timeFrame=1D`);
           };
 
@@ -79,18 +94,29 @@ export default function TokenBanner({
             <div
               key={`${token.address}-${idx}`}
               onClick={handleNavigation}
-              className="inline-flex items-center gap-3 cursor-pointer hover:bg-white/10 px-3 py-1.5 rounded-md transition-all group"
+              className="
+                group
+                inline-flex
+                cursor-pointer
+                items-center
+                gap-3
+                rounded-md
+                px-2.5
+                py-1
+                transition-all
+                hover:bg-white/10
+              "
             >
-              <span className="text-sm font-black text-white group-hover:text-chad-green transition-colors uppercase tracking-wider">
+              <span className="text-sm font-black uppercase tracking-wider text-white transition-colors group-hover:text-chad-green">
                 {token.symbol}
               </span>
 
-              <span className="text-sm font-semibold font-mono text-slate-200">
+              <span className="font-mono text-sm font-semibold text-slate-200">
                 {formatPrice(token.price)}
               </span>
 
               <span
-                className={`text-sm font-black font-mono tracking-tight ${
+                className={`font-mono text-sm font-black tracking-tight ${
                   token.price24hChangePercent == null
                     ? "text-amber-400"
                     : isPositive

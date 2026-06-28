@@ -22,7 +22,7 @@ export default function HeroContent() {
 
         <h2
           className="
-            mt-0
+            mt-4
             text-[24px]
             font-bold
             leading-6
@@ -30,12 +30,14 @@ export default function HeroContent() {
             text-white
             desktop:text-[40px]
             desktop:leading-12
+            desktop:mt-0
           "
         >
           where traders become legends.
         </h2>
         <p
           className="
+            mb-2
             max-w-2xl
             text-center
             text-base
@@ -44,6 +46,7 @@ export default function HeroContent() {
 
             desktop:text-[22px]
             desktop:leading-6
+            desktop:mb-0
           "
         >
           From memecoins to viral tokens, trade any crypto in seconds.

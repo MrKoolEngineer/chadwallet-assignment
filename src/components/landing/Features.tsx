@@ -5,8 +5,8 @@ import { FEATURES } from "./data/features";
 
 export default function Features() {
   return (
-    <section className="section py-8 desktop:py-2">
-      <div className="mx-auto flex max-w-[2000px] flex-col gap-13">
+    <section className="w-full px-3 pt-8 desktop:px-20 desktop:py-2">
+      <div className="flex flex-col gap-13">
         {/* Heading */}
 
         <div className="hidden desktop:flex flex-col gap-3">

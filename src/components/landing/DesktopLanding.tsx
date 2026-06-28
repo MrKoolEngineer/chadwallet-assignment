@@ -30,22 +30,20 @@ export default function DesktopLanding() {
   return (
     <main className="relative min-h-screen overflow-x-hidden bg-chad-bg text-slate-50 antialiased select-none">
       <div className="fixed inset-x-0 top-0 z-50">
-        {/* <TokenBanner
+        <TokenBanner
           tokens={tokens}
           isLoading={isLoading}
           isError={isError}
           direction="forward"
           position="top"
-        /> */}
-
-        <Navbar defaultToken={defaultToken} isLoading={isLoading} />
+        />
       </div>
+      <Navbar defaultToken={defaultToken} isLoading={isLoading} />
 
       <Hero />
       <TradeAnywhere />
       <Features />
       <CTASection />
-      <Footer />
 
       <TokenBanner
         tokens={tokens}
@@ -54,6 +52,8 @@ export default function DesktopLanding() {
         direction="reverse"
         position="bottom"
       />
+
+      <Footer />
     </main>
   );
 }
