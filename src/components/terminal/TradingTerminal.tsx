@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 
@@ -23,24 +23,15 @@ export default function TradingTerminal({
 
   const [selectedAddress, setSelectedAddress] = useState(address);
 
-  // Keep state in sync if the page is refreshed or entered directly via URL
-  useEffect(() => {
-    setSelectedAddress(address);
-  }, [address]);
-
   const handleTokenSelect = useCallback(
     (newAddress: string) => {
-      if (newAddress === selectedAddress) {
-        return;
-      }
+      if (newAddress === selectedAddress) return;
 
       setSelectedAddress(newAddress);
 
       const url = new URL(window.location.href);
-
       url.pathname = `/tokens/${chain}/${newAddress}`;
 
-      // Preserve existing query params (timeFrame, etc.)
       window.history.replaceState({}, "", url);
     },
     [chain, selectedAddress],
