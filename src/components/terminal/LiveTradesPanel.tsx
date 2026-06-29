@@ -20,7 +20,7 @@ export default function LiveTradesPanel({ chain, address }: Props) {
 
   if (isLoading) {
     return (
-      <div className="card flex-1">
+      <div className="flex-1 flex-1 border border-white/10 rounded-2xl">
         <LoadingState label="Loading live trades..." />
       </div>
     );
@@ -28,14 +28,14 @@ export default function LiveTradesPanel({ chain, address }: Props) {
 
   if (isError || !data) {
     return (
-      <div className="card flex-1">
+      <div className="flex-1 flex-1 border border-white/10 rounded-2xl">
         <ErrorState label="Failed to load trades." />
       </div>
     );
   }
 
   return (
-    <section className="card flex flex-col h-full overflow-hidden">
+    <section className="flex flex-col h-full overflow-hidden">
       <div className="h-11 shrink-0 px-4 flex items-center justify-between border-b border-chad-border bg-chad-surface/30">
         <h3 className="text-[11px] uppercase tracking-widest font-bold text-slate-400">
           Live Trades

@@ -20,7 +20,7 @@ export default function TopHoldersPanel({ chain, address }: Props) {
 
   if (isLoading) {
     return (
-      <div className="card flex-1">
+      <div className="flex-1 border border-white/10 rounded-2xl">
         <LoadingState label="Loading holders..." />
       </div>
     );
@@ -28,15 +28,15 @@ export default function TopHoldersPanel({ chain, address }: Props) {
 
   if (isError || !data) {
     return (
-      <div className="card flex-1">
+      <div className="flex-1 border border-white/10 rounded-2xl">
         <ErrorState label="Failed to load holders." />
       </div>
     );
   }
 
   return (
-    <section className="card flex flex-col h-full overflow-hidden">
-      <div className="h-11 shrink-0 px-4 flex items-center justify-between border-b border-chad-border bg-chad-surface/30">
+    <section className="flex flex-col h-full overflow-hidden">
+      <div className="h-11 shrink-0 px-4 flex items-center justify-between border-b border-chad-border">
         <h3 className="text-[11px] uppercase tracking-widest font-bold text-slate-400">
           Top Holders
         </h3>
@@ -50,7 +50,7 @@ export default function TopHoldersPanel({ chain, address }: Props) {
         {data.items.map((holder, index) => (
           <div
             key={holder.owner}
-            className="flex items-center justify-between px-4 py-3 border-b border-chad-border hover:bg-chad-surface/30 transition-colors"
+            className="flex items-center justify-between px-4 py-3 border-b border-chad-border transition-colors"
           >
             <div>
               <div className="text-xs text-slate-500">#{index + 1}</div>

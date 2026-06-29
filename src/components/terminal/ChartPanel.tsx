@@ -19,7 +19,7 @@ export default function ChartPanel({ chain, address }: ChartPanelProps) {
 
   return (
     <section className="flex-1 flex flex-col overflow-hidden">
-      <div className="card mb-2 overflow-hidden">
+      <div className="mb-2 overflow-hidden">
         <TokenHeader chain={chain} address={address} />
         <TradingViewChart
           chain={chain}

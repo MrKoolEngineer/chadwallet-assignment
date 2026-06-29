@@ -3,27 +3,17 @@
 import { useAuthTrigger } from "@/hooks/useAuthTrigger";
 import Logo from "../Logo";
 
-interface TerminalHeaderProps {
-  chain: string;
-}
+// interface TerminalHeaderProps {
+//   chain: string;
+// }
 
-export default function TerminalHeader({ chain }: TerminalHeaderProps) {
+export default function TerminalHeader() {
   const { isAuthenticated, logout } = useAuthTrigger();
 
   return (
     <header className="h-13 pr-4 flex items-center justify-between shrink-0">
       <div className="flex items-center gap-4">
         <Logo />
-        <div className="h-4 w-px" />
-        <div className="flex items-center gap-4 text-[10px] font-mono text-slate-400">
-          <div className="text-sm">
-            NETWORK:{" "}
-            <span className="text-chad-green font-bold uppercase">{chain}</span>
-          </div>
-          <div className="text-sm">
-            STATUS: <span className="text-slate-300 font-bold">DEMO</span>
-          </div>
-        </div>
       </div>
 
       {isAuthenticated && (

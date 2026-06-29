@@ -29,7 +29,7 @@ export default function TokenHeader({ chain, address }: TokenHeaderProps) {
 
   if (isLoading) {
     return (
-      <div className="h-23 border-b border-chad-border flex items-center justify-center shrink-0">
+      <div className="h-23 flex items-center justify-center shrink-0">
         <span className="text-slate-500 font-mono">Loading token...</span>
       </div>
     );
@@ -37,7 +37,7 @@ export default function TokenHeader({ chain, address }: TokenHeaderProps) {
 
   if (isError || !token) {
     return (
-      <div className="h-23 border-b border-chad-border shrink-0">
+      <div className="h-23 shrink-0">
         <ErrorState label="Failed to load token." height="100%" />
       </div>
     );
@@ -46,7 +46,7 @@ export default function TokenHeader({ chain, address }: TokenHeaderProps) {
   const isPositive = token.price24hChangePercent >= 0;
 
   return (
-    <div className="p-4 border-b border-chad-border bg-chad-surface/30 flex items-center justify-between shrink-0">
+    <div className="p-4 flex items-center justify-between shrink-0">
       <div className="flex items-center gap-4">
         {token.logoURI ? (
           <img
@@ -57,7 +57,7 @@ export default function TokenHeader({ chain, address }: TokenHeaderProps) {
             className="rounded-full"
           />
         ) : (
-          <div className="w-11 h-11 rounded-full bg-chad-surface border border-chad-border" />
+          <div className="w-11 h-11 rounded-full" />
         )}
 
         <div>
@@ -68,7 +68,7 @@ export default function TokenHeader({ chain, address }: TokenHeaderProps) {
           </div>
         </div>
 
-        <div className="flex gap-6 border-l border-chad-border pl-6">
+        <div className="flex gap-6 pl-6">
           <div>
             <div className="text-[10px] uppercase text-slate-500">
               24H Volume
