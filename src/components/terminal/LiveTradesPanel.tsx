@@ -18,65 +18,62 @@ export default function LiveTradesPanel({ chain, address }: Props) {
     address,
   });
 
-  if (isLoading) {
+  if (isLoading && !data) {
     return (
-      <div className="flex-1 border border-white/10 rounded-2xl">
+      <div className="flex-1 rounded-2xl border border-white/10">
         <LoadingState label="Loading live trades..." />
       </div>
     );
   }
 
-  if (isError || !data) {
+  // Only show error if there is no cached data
+  if (isError) {
     return (
-      <div className="flex-1 border border-white/10 rounded-2xl">
+      <div className="flex-1 rounded-2xl border border-white/10">
         <ErrorState label="Failed to load trades." />
       </div>
     );
   }
 
   return (
-    <section className="flex flex-col h-full border border-white/10 rounded-2xl overflow-hidden">
-      <div className="flex h-10 shrink-0 items-center justify-between rounded-t-lg bg-chad-surface px-3">
-        {/* Left */}
-
+    <section className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/10">
+      <div className="relative flex h-10 shrink-0 items-center justify-between rounded-t-lg bg-chad-surface px-3">
         <div className="flex items-center gap-3 text-sm">
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              className="capitalize font-medium text-chad-text transition-colors hover:text-white"
-            >
-              Live Trades
-            </button>
-          </div>
+          <button
+            type="button"
+            className="font-medium capitalize text-chad-text transition-colors hover:text-white"
+          >
+            Live Trades
+          </button>
         </div>
       </div>
 
       <div className="flex-1 overflow-y-auto no-scrollbar">
-        {data.items.map((trade, idx) => (
+        {data?.items.map((trade, idx) => (
           <div
-            key={trade.tx_hash + idx}
-            className="flex items-center justify-between px-4 py-3 border-b border-chad-border hover:bg-chad-surface/30 transition-colors"
+            key={`${trade.tx_hash}-${idx}`}
+            className="flex items-center justify-between px-4 py-2 transition-colors hover:bg-chad-surface/30"
           >
             <div>
               <div
-                className={`font-bold uppercase ${
+                className={`text-lg font-semibold leading-none text-[15px] uppercase ${
                   trade.side === "buy" ? "text-chad-green" : "text-chad-red"
                 }`}
               >
                 {trade.side}
               </div>
 
-              <div className="text-xs text-slate-500">
+              <div className="text-[11px] text-chad-text-tertiary">
                 {timeAgo(trade.block_unix_time)}
               </div>
             </div>
 
             <div className="text-right">
-              <div className="font-semibold text-slate-100">
+              <div className="text-lg font-semibold leading-none text-chad-text">
                 {formatCompactNumber(trade.volume)}
               </div>
 
-              <div className="text-xs text-slate-500">
+              <div className="text-[11px] text-chad-text-tertiary">
                 ${formatCompactNumber(trade.volume_usd)}
               </div>
             </div>

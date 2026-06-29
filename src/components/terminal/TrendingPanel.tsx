@@ -40,7 +40,7 @@ export default function TrendingPanel({
     );
   }
 
-  if (isError || !trendingTokens?.length) {
+  if (isError) {
     return (
       <aside
         style={{ width: 340 }}
@@ -54,9 +54,11 @@ export default function TrendingPanel({
   return (
     <aside
       style={{ width: 340 }}
-      className="shrink-0 flex flex-col overflow-hidden border border-white/10 rounded-2xl"
+      className="flex shrink-0 flex-col overflow-hidden rounded-2xl border border-white/10"
     >
-      <TrendingPanelHeader />
+      <div className="relative">
+        <TrendingPanelHeader />
+      </div>
 
       {/* List */}
 
@@ -65,7 +67,7 @@ export default function TrendingPanel({
           style={{ padding: "4px 8px 0 8px" }}
           className="flex flex-col gap-1"
         >
-          {trendingTokens.map((token) => {
+          {trendingTokens?.map((token) => {
             const isActive = activeAddress === token.address;
             const positive = token.price24hChangePercent >= 0;
 
@@ -78,8 +80,6 @@ export default function TrendingPanel({
                 }
                 className={`group flex items-center gap-3 rounded-xl px-3 py-2.5 text-left cursor-pointer transition-all duration-200 ease-out ${isActive ? "bg-chad-surface ring-1 ring-white/5" : "hover:bg-chad-surface/70 hover:ring-1 hover:ring-white/5 hover:scale-[1.01]"} active:scale-[0.99]`}
               >
-                {/* Logo */}
-
                 <img
                   src={token.logoURI}
                   alt={token.symbol}
@@ -90,11 +90,9 @@ export default function TrendingPanel({
                   }}
                 />
 
-                {/* Token Info */}
-
                 <div className="flex flex-1 justify-between">
-                  <div className="flex flex-col items-start justify-start">
-                    <div className="truncate text-sm leading-4 font-semibold transition-colors duration-200 group-hover:text-white">
+                  <div className="flex flex-col items-start">
+                    <div className="truncate text-sm font-semibold leading-4 transition-colors duration-200 group-hover:text-white">
                       {token.name}
                     </div>
 
@@ -103,10 +101,11 @@ export default function TrendingPanel({
                     </div>
                   </div>
 
-                  {/* Right */}
-
-                  <div className="flex flex-col items-end">
-                    <div className="truncate text-sm leading-4 font-semibold transition-colors duration-200 group-hover:text-white">
+                  <div
+                    style={{ alignItems: "flex-end" }}
+                    className="flex flex-col"
+                  >
+                    <div className="truncate text-sm font-semibold leading-4 transition-colors duration-200 group-hover:text-white">
                       {formatPrice(token.price)}
                     </div>
 

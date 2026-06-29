@@ -31,5 +31,7 @@ export function useGetTokenStats({
     refetchInterval,
 
     refetchOnWindowFocus: false,
+
+    placeholderData: (previousData) => previousData,
   });
 }

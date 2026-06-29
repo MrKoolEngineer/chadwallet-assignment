@@ -19,45 +19,62 @@ export default function TopHoldersPanel({ chain, address }: Props) {
     address,
   });
 
-  if (isLoading) {
+  // Only show loading on initial load (no data)
+  if (isLoading && !data) {
     return (
-      <div className="flex-1 border border-white/10 rounded-2xl">
+      <div className="flex-1 rounded-2xl border border-white/10">
         <LoadingState label="Loading holders..." />
       </div>
     );
   }
 
+  // Only show error if there is no cached data
   if (isError || !data) {
     return (
-      <div className="flex-1 border border-white/10 rounded-2xl">
+      <div className="flex-1 rounded-2xl border border-white/10">
         <ErrorState label="Failed to load holders." />
       </div>
     );
   }
 
   return (
-    <section className="flex flex-col h-full border border-white/10 rounded-2xl overflow-hidden">
-      <TopHoldersPanelHeader />
+    <section className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/10">
+      <div className="relative">
+        <TopHoldersPanelHeader />
+      </div>
+
       <div className="flex-1 overflow-y-auto no-scrollbar">
-        {data.items.map((holder, index) => (
+        {data?.items.map((holder, index) => (
           <div
             key={holder.owner}
-            className="flex items-center justify-between px-4 py-3 border-b border-chad-border transition-colors"
+            className="
+              flex
+              items-center
+              justify-between
+
+              px-4
+              py-2
+
+              transition-colors
+              hover:bg-chad-surface/40
+            "
           >
             <div>
-              <div className="text-xs text-slate-500">#{index + 1}</div>
+              <div className="text-[10px] text-chad-text-tertiary">
+                #{index + 1}
+              </div>
 
-              <div className="font-mono text-slate-100">
+              <div className="text-[15px] font-medium text-chad-text">
                 {shortenAddress(holder.owner)}
               </div>
             </div>
 
             <div className="text-right">
-              <div className="font-semibold text-slate-100">
+              <div className="text-lg font-semibold leading-none">
                 {formatCompactNumber(holder.ui_amount)}
               </div>
 
-              <div className="text-xs text-slate-500">tokens</div>
+              <div className="text-[11px] text-chad-text-tertiary">tokens</div>
             </div>
           </div>
         ))}

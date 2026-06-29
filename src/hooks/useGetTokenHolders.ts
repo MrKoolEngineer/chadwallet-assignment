@@ -19,5 +19,7 @@ export function useGetTokenHolders({ chain, address }: Options) {
       }),
 
     staleTime: 60_000,
+
+    placeholderData: (previousData) => previousData,
   });
 }

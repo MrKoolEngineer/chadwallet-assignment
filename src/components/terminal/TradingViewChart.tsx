@@ -88,10 +88,8 @@ export default function TradingViewChart({
     const candleSeries = chart.addSeries(CandlestickSeries, {
       upColor: "#4ADE80",
       downColor: "#F87171",
-
       wickUpColor: "#4ADE80",
       wickDownColor: "#F87171",
-
       borderUpColor: "#4ADE80",
       borderDownColor: "#F87171",
 
@@ -161,30 +159,34 @@ export default function TradingViewChart({
     };
   }, [chain, address, data]);
 
+  // Only show loading on initial load (no data)
+  if (isLoading && !data) {
+    return (
+      <div style={{ height: CHART_HEIGHT }} className="w-full">
+        <LoadingState label="Loading chart..." />
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div style={{ height: CHART_HEIGHT }} className="w-full">
+        <ErrorState label="Failed to load chart." />
+      </div>
+    );
+  }
+
   return (
     <>
-      {/* Reserve space for timeframe tabs to avoid layout shift */}
       <div className="h-11">
-        {!isLoading && (
-          <TimeframeTabs interval={interval} onChange={onIntervalChange} />
-        )}
+        <TimeframeTabs interval={interval} onChange={onIntervalChange} />
       </div>
 
-      {isLoading && (
-        <LoadingState label="Loading chart..." height={CHART_HEIGHT} />
-      )}
-
-      {isError && (
-        <ErrorState label="⚠ Failed to load chart." height={CHART_HEIGHT} />
-      )}
-
-      {!isLoading && !isError && (
-        <div
-          ref={containerRef}
-          className="w-full"
-          style={{ height: CHART_HEIGHT }}
-        />
-      )}
+      <div
+        ref={containerRef}
+        className="w-full"
+        style={{ height: CHART_HEIGHT }}
+      />
     </>
   );
 }

@@ -49,5 +49,7 @@ export function useGetTokenOHLCV({
     refetchInterval,
     refetchIntervalInBackground: false,
     refetchOnWindowFocus: false,
+
+    placeholderData: (previousData) => previousData,
   });
 }

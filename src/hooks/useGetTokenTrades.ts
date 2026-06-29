@@ -20,5 +20,7 @@ export function useGetTokenTrades({ chain, address }: Options) {
       }),
 
     staleTime: 15_000,
+
+    placeholderData: (previousData) => previousData,
   });
 }
