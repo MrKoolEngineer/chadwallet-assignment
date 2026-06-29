@@ -18,30 +18,7 @@ function QuickAmounts({ onSelect, onSettingsClick }: QuickAmountsProps) {
           key={amount}
           type="button"
           onClick={() => onSelect(amount)}
-          className="
-            flex
-            h-8
-
-            items-center
-            justify-center
-
-            rounded-lg
-
-            bg-chad-surface
-
-            px-3
-            py-1
-
-            text-sm
-            font-bold
-            text-chad-text
-
-            transition-all
-            duration-150
-
-            hover:bg-white/5
-            active:scale-[0.98]
-          "
+          className="flex h-8 items-center justify-center rounded-lg bg-chad-surface px-3 py-1 text-sm font-bold text-chad-text transition-all duration-150 hover:bg-white/5 active:scale-[0.98]"
         >
           ${amount}
         </button>
@@ -50,25 +27,7 @@ function QuickAmounts({ onSelect, onSettingsClick }: QuickAmountsProps) {
       <button
         type="button"
         onClick={onSettingsClick}
-        className="
-          ml-auto
-
-          flex
-          h-8
-          w-8
-
-          items-center
-          justify-center
-
-          rounded-lg
-
-          text-chad-text-tertiary
-
-          transition-colors
-          duration-150
-
-          hover:text-chad-text
-        "
+        className="ml-auto flex h-8 w-8 items-center justify-center rounded-lg text-chad-text-tertiary transition-colors duration-150 hover:text-chad-text"
       >
         <Settings2 size={16} />
       </button>

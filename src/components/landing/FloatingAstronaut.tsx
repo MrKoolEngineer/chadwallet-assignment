@@ -17,16 +17,7 @@ export default function FloatingAstronaut() {
         height={1190}
         priority
         draggable={false}
-        className="
-          pointer-events-none
-          -mt-14
-          h-auto
-          animate-float
-          object-contain
-          select-none
-          desktop:-mt-20
-          desktop:h-130
-        "
+        className="pointer-events-none -mt-14 h-auto animate-float object-contain select-none desktop:-mt-20 desktop:h-130"
       />
     </picture>
   );

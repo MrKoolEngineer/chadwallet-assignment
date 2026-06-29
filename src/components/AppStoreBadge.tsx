@@ -30,23 +30,7 @@ export default function AppStoreBadge({ platform }: AppStoreBadgeProps) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={current.label}
-      className="
-        group
-        flex
-        h-10
-        items-center
-        justify-center
-        overflow-hidden
-        rounded-xl
-        border
-        border-white/5
-        bg-chad-surface/70
-        backdrop-blur-md
-        transition-all
-        duration-300
-        ease-out
-        active:translate-y-0
-      "
+      className="group flex h-10 items-center justify-center overflow-hidden rounded-xl border border-white/5 bg-chad-surface/70 backdrop-blur-md transition-all duration-300 ease-out active:translate-y-0"
     >
       <Image
         src={current.src}
@@ -54,14 +38,7 @@ export default function AppStoreBadge({ platform }: AppStoreBadgeProps) {
         width={current.width}
         height={40}
         draggable={false}
-        className="
-          block
-          h-10
-          w-auto
-          select-none
-          transition-transform
-          duration-300
-        "
+        className="block h-10 w-auto select-none transition-transform duration-300"
       />
     </a>
   );

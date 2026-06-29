@@ -29,9 +29,14 @@ export default function ChartPanel({ chain, address }: ChartPanelProps) {
         />
       </div>
 
-      <div className="flex-1 min-h-0 grid grid-cols-2 gap-2">
-        <TopHoldersPanel chain={chain} address={address} />
-        <LiveTradesPanel chain={chain} address={address} />
+      <div className="flex flex-1 min-h-0 gap-2">
+        <section className="flex min-w-0 flex-1 flex-col overflow-hidden rounded-xl">
+          <TopHoldersPanel chain={chain} address={address} />
+        </section>
+
+        <section className="flex min-w-0 flex-1 flex-col overflow-hidden rounded-xl">
+          <LiveTradesPanel chain={chain} address={address} />
+        </section>
       </div>
     </section>
   );

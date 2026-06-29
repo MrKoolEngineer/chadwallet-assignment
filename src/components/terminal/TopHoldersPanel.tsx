@@ -6,6 +6,7 @@ import ErrorState from "../common/ErrorState";
 import { shortenAddress } from "@/utils/address";
 import { formatCompactNumber } from "@/utils/token";
 import { useGetTokenHolders } from "@/hooks/useGetTokenHolders";
+import TopHoldersPanelHeader from "./TopHoldersPanelHeader";
 
 interface Props {
   chain: string;
@@ -35,17 +36,8 @@ export default function TopHoldersPanel({ chain, address }: Props) {
   }
 
   return (
-    <section className="flex flex-col h-full overflow-hidden">
-      <div className="h-11 shrink-0 px-4 flex items-center justify-between border-b border-chad-border">
-        <h3 className="text-[11px] uppercase tracking-widest font-bold text-slate-400">
-          Top Holders
-        </h3>
-
-        <span className="text-[10px] font-mono text-slate-500">
-          Top {data.items.length}
-        </span>
-      </div>
-
+    <section className="flex flex-col h-full border border-white/10 rounded-2xl overflow-hidden">
+      <TopHoldersPanelHeader />
       <div className="flex-1 overflow-y-auto no-scrollbar">
         {data.items.map((holder, index) => (
           <div

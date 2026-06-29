@@ -20,7 +20,7 @@ export default function LiveTradesPanel({ chain, address }: Props) {
 
   if (isLoading) {
     return (
-      <div className="flex-1 flex-1 border border-white/10 rounded-2xl">
+      <div className="flex-1 border border-white/10 rounded-2xl">
         <LoadingState label="Loading live trades..." />
       </div>
     );
@@ -28,20 +28,27 @@ export default function LiveTradesPanel({ chain, address }: Props) {
 
   if (isError || !data) {
     return (
-      <div className="flex-1 flex-1 border border-white/10 rounded-2xl">
+      <div className="flex-1 border border-white/10 rounded-2xl">
         <ErrorState label="Failed to load trades." />
       </div>
     );
   }
 
   return (
-    <section className="flex flex-col h-full overflow-hidden">
-      <div className="h-11 shrink-0 px-4 flex items-center justify-between border-b border-chad-border bg-chad-surface/30">
-        <h3 className="text-[11px] uppercase tracking-widest font-bold text-slate-400">
-          Live Trades
-        </h3>
+    <section className="flex flex-col h-full border border-white/10 rounded-2xl overflow-hidden">
+      <div className="flex h-10 shrink-0 items-center justify-between rounded-t-lg bg-chad-surface px-3">
+        {/* Left */}
 
-        <span className="text-[10px] font-mono text-chad-green">LIVE</span>
+        <div className="flex items-center gap-3 text-sm">
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              className="capitalize font-medium text-chad-text transition-colors hover:text-white"
+            >
+              Live Trades
+            </button>
+          </div>
+        </div>
       </div>
 
       <div className="flex-1 overflow-y-auto no-scrollbar">

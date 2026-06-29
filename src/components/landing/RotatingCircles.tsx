@@ -13,18 +13,7 @@ export default function RotatingCircles() {
         width={900}
         height={900}
         priority
-        className="
-          absolute
-          inset-0
-          z-0
-          m-auto
-
-          w-[35vw]
-
-          desktop:w-[30vw]
-
-          animate-spin-reverse
-        "
+        className="absolute inset-0 z-0 m-auto w-[35vw] desktop:w-[30vw] animate-spin-reverse"
       />
 
       {/* Outer Ring */}
@@ -35,19 +24,7 @@ export default function RotatingCircles() {
         width={1500}
         height={1500}
         priority
-        className="
-          absolute
-          inset-0
-          z-0
-          m-auto
-
-          w-screen
-
-          desktop:w-[55vw]
-          desktop:max-w-275
-
-          animate-spin-slow
-        "
+        className="absolute inset-0 z-0 m-auto w-screen desktop:w-[55vw] desktop:max-w-275 animate-spin-slow"
       />
     </>
   );

@@ -6,11 +6,7 @@ import ErrorState from "../common/ErrorState";
 
 import { useGetTokenStats } from "@/hooks/useGetTokenStats";
 
-import {
-  formatCompactNumber,
-  formatPercentage,
-  formatPrice,
-} from "@/utils/token";
+import { formatCompactNumber } from "@/utils/token";
 
 interface TokenHeaderProps {
   chain: string;
@@ -29,94 +25,97 @@ export default function TokenHeader({ chain, address }: TokenHeaderProps) {
 
   if (isLoading) {
     return (
-      <div className="h-23 flex items-center justify-center shrink-0">
-        <span className="text-slate-500 font-mono">Loading token...</span>
+      <div className="flex h-20 items-center justify-center">
+        <span className="text-sm text-chad-text-secondary">
+          Loading token...
+        </span>
       </div>
     );
   }
 
   if (isError || !token) {
     return (
-      <div className="h-23 shrink-0">
+      <div className="h-20">
         <ErrorState label="Failed to load token." height="100%" />
       </div>
     );
   }
 
-  const isPositive = token.price24hChangePercent >= 0;
-
   return (
-    <div className="p-4 flex items-center justify-between shrink-0">
-      <div className="flex items-center gap-4">
-        {token.logoURI ? (
-          <img
-            src={token.logoURI}
-            alt={token.symbol}
-            width={44}
-            height={44}
-            className="rounded-full"
-          />
-        ) : (
-          <div className="w-11 h-11 rounded-full" />
-        )}
+    <div className="flex items-center gap-4 px-4 py-3">
+      {/* Logo */}
 
-        <div>
-          <h1 className="text-xl font-black text-slate-100">{token.name}</h1>
+      {token.logoURI ? (
+        <img
+          src={token.logoURI}
+          alt={token.symbol}
+          className="h-10 w-10 shrink-0 rounded-full border border-white/10 object-cover"
+        />
+      ) : (
+        <div className="h-10 w-10 shrink-0 rounded-full bg-chad-surface" />
+      )}
 
-          <div className="text-xs text-slate-500 font-mono">
-            {token.symbol} • {chain} • {address.slice(0, 6)}...
-          </div>
+      {/* Token */}
+
+      <div className="flex w-56 shrink-0 flex-col gap-1">
+        <div className="flex items-center gap-2">
+          <h1 className="truncate text-[28px] leading-none font-semibold text-chad-text">
+            {token.name}
+          </h1>
         </div>
 
-        <div className="flex gap-6 pl-6">
-          <div>
-            <div className="text-[10px] uppercase text-slate-500">
-              24H Volume
-            </div>
+        <div className="flex items-center gap-2 text-xs text-chad-text-secondary">
+          <span>{token.symbol}</span>
 
-            <div className="font-bold text-slate-100">
-              {formatCompactNumber(token.v24hUSD)}
-            </div>
-          </div>
+          <div className="h-3 w-px bg-white/10" />
 
-          <div>
-            <div className="text-[10px] uppercase text-slate-500">
-              Market Cap
-            </div>
+          <span className="capitalize">{chain}</span>
 
-            <div className="font-bold text-slate-100">
-              {formatCompactNumber(token.marketCap)}
-            </div>
-          </div>
+          <div className="h-3 w-px bg-white/10" />
 
-          <div>
-            <div className="text-[10px] uppercase text-slate-500">
-              Liquidity
-            </div>
-
-            <div className="font-bold text-slate-100">
-              {formatCompactNumber(token.liquidity)}
-            </div>
-          </div>
+          <span>{address.slice(0, 6)}...</span>
         </div>
       </div>
 
-      <div className="text-right">
-        <div
-          className={`text-2xl font-black ${
-            isPositive ? "text-chad-green" : "text-chad-red"
-          }`}
-        >
-          {formatPrice(token.price)}
-        </div>
+      {/* Stats */}
 
-        <div
-          className={`text-sm font-mono ${
-            isPositive ? "text-chad-green" : "text-chad-red"
-          }`}
-        >
-          {formatPercentage(token.price24hChangePercent)}
-        </div>
+      <div className="ml-auto flex items-center gap-2 overflow-x-auto no-scrollbar">
+        <MetricCard
+          label="Market Cap"
+          value={formatCompactNumber(token.marketCap)}
+        />
+
+        <MetricCard label="Price" value={`$${token.price.toPrecision(4)}`} />
+
+        <MetricCard
+          label="24H Vol."
+          value={formatCompactNumber(token.v24hUSD)}
+        />
+
+        <MetricCard
+          label="Liquidity"
+          value={formatCompactNumber(token.liquidity)}
+        />
+      </div>
+    </div>
+  );
+}
+
+function MetricCard({
+  label,
+  value,
+}: {
+  label: string;
+  value: string | number;
+}) {
+  return (
+    <div className="flex min-w-[96px] flex-col items-center rounded-lg bg-chad-surface px-3 py-2">
+      <div className="text-[11px] text-chad-text-secondary whitespace-nowrap">
+        {label}
+      </div>
+
+      <div className="mt-0.5 text-sm font-semibold text-chad-text tabular-nums">
+        {value}
       </div>
     </div>
   );

@@ -43,13 +43,7 @@ export default function TradeAnywhere() {
             width={2825}
             height={3251}
             priority
-            className="
-              absolute
-              -right-24
-              bottom-28
-              w-[28vw]
-              animate-float
-            "
+            className="absolute -right-24 bottom-28 w-[28vw] animate-float"
           />
         </div>
       </div>

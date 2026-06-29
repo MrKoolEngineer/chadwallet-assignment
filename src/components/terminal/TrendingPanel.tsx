@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 "use client";
 
 import { useRouter } from "next/navigation";
@@ -30,7 +32,7 @@ export default function TrendingPanel({
   if (isLoading) {
     return (
       <aside
-        style={{ width: 360 }}
+        style={{ width: 340 }}
         className="border border-white/10 rounded-2xl"
       >
         <LoadingState label="Loading trending tokens..." />
@@ -41,7 +43,7 @@ export default function TrendingPanel({
   if (isError || !trendingTokens?.length) {
     return (
       <aside
-        style={{ width: 360 }}
+        style={{ width: 340 }}
         className="border border-white/10 rounded-2xl"
       >
         <ErrorState label="Unable to load trending tokens." />
@@ -51,7 +53,7 @@ export default function TrendingPanel({
 
   return (
     <aside
-      style={{ width: 360 }}
+      style={{ width: 340 }}
       className="shrink-0 flex flex-col overflow-hidden border border-white/10 rounded-2xl"
     >
       <TrendingPanelHeader />
@@ -74,54 +76,14 @@ export default function TrendingPanel({
                 onClick={() =>
                   router.push(`/tokens/${chain}/${token.address}?timeFrame=1D`)
                 }
-                className={`
-                  group
-
-                  flex
-                  items-center
-                  gap-3
-
-                  rounded-xl
-
-                  px-3
-                  py-2.5
-
-                  text-left
-
-                  cursor-pointer
-
-                  transition-all
-                  duration-200
-                  ease-out
-
-                  ${
-                    isActive
-                      ? "bg-chad-surface ring-1 ring-white/5"
-                      : "hover:bg-chad-surface/70 hover:ring-1 hover:ring-white/5 hover:scale-[1.01]"
-                  }
-
-                  active:scale-[0.99]
-                `}
+                className={`group flex items-center gap-3 rounded-xl px-3 py-2.5 text-left cursor-pointer transition-all duration-200 ease-out ${isActive ? "bg-chad-surface ring-1 ring-white/5" : "hover:bg-chad-surface/70 hover:ring-1 hover:ring-white/5 hover:scale-[1.01]"} active:scale-[0.99]`}
               >
                 {/* Logo */}
 
                 <img
                   src={token.logoURI}
                   alt={token.symbol}
-                  className="
-                    h-10
-                    w-10
-                    shrink-0
-
-                    rounded-full
-
-                    object-cover
-
-                    transition-transform
-                    duration-200
-
-                    group-hover:scale-105
-                  "
+                  className="h-10 w-10 shrink-0 rounded-full object-cover transition-transform duration-200 group-hover:scale-105"
                   onError={(e) => {
                     e.currentTarget.src =
                       "https://placehold.co/40x40/121824/94A3B8?text=?";
@@ -132,20 +94,7 @@ export default function TrendingPanel({
 
                 <div className="flex flex-1 justify-between">
                   <div className="flex flex-col items-start justify-start">
-                    <div
-                      className="
-                        truncate
-
-                        text-sm
-                        leading-4
-                        font-semibold
-
-                        transition-colors
-                        duration-200
-
-                        group-hover:text-white
-                      "
-                    >
+                    <div className="truncate text-sm leading-4 font-semibold transition-colors duration-200 group-hover:text-white">
                       {token.name}
                     </div>
 
@@ -157,20 +106,7 @@ export default function TrendingPanel({
                   {/* Right */}
 
                   <div className="flex flex-col items-end">
-                    <div
-                      className="
-                        truncate
-
-                        text-sm
-                        leading-4
-                        font-semibold
-
-                        transition-colors
-                        duration-200
-
-                        group-hover:text-white
-                      "
-                    >
+                    <div className="truncate text-sm leading-4 font-semibold transition-colors duration-200 group-hover:text-white">
                       {formatPrice(token.price)}
                     </div>
 

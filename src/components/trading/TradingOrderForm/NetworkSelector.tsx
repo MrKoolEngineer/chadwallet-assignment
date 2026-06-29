@@ -20,38 +20,11 @@ function NetworkSelector({
     <button
       type="button"
       onClick={onClick}
-      className="
-        group
-
-        flex
-        w-full
-
-        items-center
-        justify-between
-
-        rounded-xl
-
-        px-2
-        py-1
-
-        text-sm
-
-        transition-colors
-        duration-200
-
-        hover:bg-white/5
-      "
+      className="group flex w-full items-center justify-between rounded-xl px-2 py-1 text-sm transition-colors duration-200 hover:bg-white/5"
     >
       <div className="flex items-center gap-2">
         <div
-          className="
-            flex
-            h-4
-            w-4
-            items-center
-            justify-center
-            shrink-0
-          "
+          className="flex h-4 w-4 items-center justify-center shrink-0"
         >
           {icon ?? <div className="h-2.5 w-2.5 rounded-full bg-chad-green" />}
         </div>
@@ -63,11 +36,7 @@ function NetworkSelector({
 
       <Info
         size={15}
-        className="
-          text-slate-500
-          transition-colors
-          group-hover:text-white
-        "
+        className="text-slate-500 transition-colors group-hover:text-white"
       />
     </button>
   );
