@@ -2,8 +2,6 @@
 
 "use client";
 
-import { useRouter } from "next/navigation";
-
 import LoadingState from "../common/LoadingState";
 import ErrorState from "../common/ErrorState";
 
@@ -15,14 +13,14 @@ import TrendingPanelHeader from "./TrendingPanelHeader";
 interface TrendingPanelProps {
   chain?: string;
   activeAddress: string;
+  onTokenSelect: (address: string) => void;
 }
 
 export default function TrendingPanel({
   chain = DEFAULT_CHAIN,
   activeAddress,
+  onTokenSelect,
 }: TrendingPanelProps) {
-  const router = useRouter();
-
   const {
     data: trendingTokens,
     isLoading,
@@ -75,9 +73,7 @@ export default function TrendingPanel({
               <button
                 key={token.address}
                 type="button"
-                onClick={() =>
-                  router.push(`/tokens/${chain}/${token.address}?timeFrame=1D`)
-                }
+                onClick={() => onTokenSelect(token.address)}
                 className={`group flex items-center gap-3 rounded-xl px-3 py-2.5 text-left cursor-pointer transition-all duration-200 ease-out ${isActive ? "bg-chad-surface ring-1 ring-white/5" : "hover:bg-chad-surface/70 hover:ring-1 hover:ring-white/5 hover:scale-[1.01]"} active:scale-[0.99]`}
               >
                 <img

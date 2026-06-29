@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useCallback, useEffect } from "react";
+
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 
 import DesktopOnly from "@/components/responsive/DesktopOnly";
@@ -19,6 +21,31 @@ export default function TradingTerminal({
 }: TradingTerminalProps) {
   const isDesktop = useIsDesktop();
 
+  const [selectedAddress, setSelectedAddress] = useState(address);
+
+  // Keep state in sync if the page is refreshed or entered directly via URL
+  useEffect(() => {
+    setSelectedAddress(address);
+  }, [address]);
+
+  const handleTokenSelect = useCallback(
+    (newAddress: string) => {
+      if (newAddress === selectedAddress) {
+        return;
+      }
+
+      setSelectedAddress(newAddress);
+
+      const url = new URL(window.location.href);
+
+      url.pathname = `/tokens/${chain}/${newAddress}`;
+
+      // Preserve existing query params (timeFrame, etc.)
+      window.history.replaceState({}, "", url);
+    },
+    [chain, selectedAddress],
+  );
+
   if (isDesktop === null) {
     return null;
   }
@@ -28,12 +55,18 @@ export default function TradingTerminal({
   }
 
   return (
-    <main className="pt-2 px-4 w-dvw min-h-svh h-svh flex flex-col gap-3 max-h-svh overflow-hidden pb-6">
+    <main className="flex h-svh max-h-svh min-h-svh w-dvw flex-col gap-3 overflow-hidden px-4 pt-2 pb-6">
       <TerminalHeader />
 
-      <div className="flex flex-1 min-h-0 gap-3">
-        <TrendingPanel chain={chain} activeAddress={address} />
-        <ChartPanel chain={chain} address={address} />
+      <div className="flex min-h-0 flex-1 gap-3">
+        <TrendingPanel
+          chain={chain}
+          activeAddress={selectedAddress}
+          onTokenSelect={handleTokenSelect}
+        />
+
+        <ChartPanel chain={chain} address={selectedAddress} />
+
         <aside style={{ width: 354 }} className="flex-none pr-4">
           <TradingOrderFormPanel />
         </aside>
