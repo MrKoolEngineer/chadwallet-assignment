@@ -6,7 +6,12 @@ import LoadingState from "../common/LoadingState";
 import ErrorState from "../common/ErrorState";
 
 import { useGetTrendingTokens } from "@/hooks/useGetTrendingTokens";
-import { formatMarketCap, formatPercentage, formatPrice } from "@/utils/token";
+import {
+  formatMarketCap,
+  formatPercentage,
+  formatPrice,
+  truncateText,
+} from "@/utils/token";
 import { DEFAULT_CHAIN } from "@/constants/chain";
 import TrendingPanelHeader from "./TrendingPanelHeader";
 
@@ -92,10 +97,10 @@ export default function TrendingPanel({
                     style={{ textAlign: "left" }}
                   >
                     <div
-                      className="w-full truncate text-left text-sm font-semibold leading-4 transition-colors duration-200 group-hover:text-white"
+                      className="text-sm font-semibold leading-4 transition-colors duration-200 group-hover:text-white"
                       title={token.name}
                     >
-                      {token.name}
+                      {truncateText(token.name)}
                     </div>
 
                     <div className="mt-2 text-xs text-chad-text-secondary">

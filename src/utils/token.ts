@@ -76,3 +76,9 @@ export function formatMarketCap(value?: number | null): string {
 
   return `$${value.toFixed(0)}`;
 }
+
+export function truncateText(text: string, maxLength = 12) {
+  if (!text) return "";
+
+  return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
+}
