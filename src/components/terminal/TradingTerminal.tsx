@@ -6,7 +6,7 @@ import DesktopOnly from "@/components/responsive/DesktopOnly";
 import TerminalHeader from "@/components/terminal/TerminalHeader";
 import TrendingPanel from "@/components/terminal/TrendingPanel";
 import ChartPanel from "@/components/terminal/ChartPanel";
-import OrderFormPanel from "@/components/terminal/OrderFormPanel";
+import TradingOrderFormPanel from "../trading/TradingOrderFormPanel";
 
 interface TradingTerminalProps {
   chain: string;
@@ -28,15 +28,16 @@ export default function TradingTerminal({
   }
 
   return (
-    <main>
+    <main className="pt-2 px-4 w-dvw min-h-svh h-svh flex flex-col gap-3 max-h-svh overflow-hidden pb-6">
       <TerminalHeader chain={chain} />
 
-      <div className="flex h-[calc(100vh-86px)] gap-2 mx-2">
+      <div className="flex flex-1 min-h-0 gap-3">
         <TrendingPanel chain={chain} activeAddress={address} />
 
         <ChartPanel chain={chain} address={address} />
-
-        <OrderFormPanel chain={chain} address={address} />
+        <aside style={{ width: 354 }} className="flex-none pr-4">
+          <TradingOrderFormPanel />
+        </aside>
       </div>
     </main>
   );

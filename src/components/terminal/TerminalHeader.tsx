@@ -11,7 +11,7 @@ export default function TerminalHeader({ chain }: TerminalHeaderProps) {
   const { isAuthenticated, logout } = useAuthTrigger();
 
   return (
-    <header className="h-18 px-6 flex items-center justify-between shrink-0">
+    <header className="h-13 pr-4 flex items-center justify-between shrink-0">
       <div className="flex items-center gap-4">
         <Logo />
         <div className="h-4 w-px" />
