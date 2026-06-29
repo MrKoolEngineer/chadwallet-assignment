@@ -86,9 +86,15 @@ export default function TrendingPanel({
                   }}
                 />
 
-                <div className="flex flex-1 justify-between">
-                  <div className="flex flex-col items-start">
-                    <div className="truncate text-sm font-semibold leading-4 transition-colors duration-200 group-hover:text-white">
+                <div className="flex flex-1 items-start justify-between gap-3">
+                  <div
+                    className="flex min-w-0 flex-1 flex-col items-start"
+                    style={{ textAlign: "left" }}
+                  >
+                    <div
+                      className="w-full truncate text-left text-sm font-semibold leading-4 transition-colors duration-200 group-hover:text-white"
+                      title={token.name}
+                    >
                       {token.name}
                     </div>
 
@@ -98,20 +104,19 @@ export default function TrendingPanel({
                   </div>
 
                   <div
+                    className="flex shrink-0 flex-col items-end justify-start"
                     style={{ alignItems: "flex-end" }}
-                    className="flex flex-col"
                   >
-                    <div className="truncate text-sm font-semibold leading-4 transition-colors duration-200 group-hover:text-white">
+                    <div className="text-sm font-semibold leading-4 transition-colors duration-200 group-hover:text-white">
                       {formatPrice(token.price)}
                     </div>
 
                     <div
-                      className={`mt-2 flex items-center gap-1 text-xs font-medium ${
+                      className={`mt-2 flex items-center justify-end gap-1 text-xs font-medium ${
                         positive ? "text-chad-green" : "text-chad-red"
                       }`}
                     >
                       <span>{positive ? "▲" : "▼"}</span>
-
                       <span>
                         {formatPercentage(token.price24hChangePercent)}
                       </span>
